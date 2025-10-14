@@ -21,7 +21,21 @@
   --color-warning: var(--c-warning);
   --color-info: var(--c-info);
 }
+@keyframes borderMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
+.animate-borderMove {
+  animation: borderMove 3s linear infinite;
+}
 
 /* Bootstrap-like container */
 .container {
