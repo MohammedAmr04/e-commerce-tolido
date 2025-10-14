@@ -1,5 +1,12 @@
 {
   "HomePage": {
     "title": "Hello world!"
+  },
+  "common":
+  {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contactus": "Contact Us"
   }
 }

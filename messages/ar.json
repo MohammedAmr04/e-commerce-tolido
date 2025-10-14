@@ -1,5 +1,13 @@
 {
   "HomePage": {
     "title": "اهلا"
+  },
+  "common":
+  {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "about": "من نحن",
+    "contactus": "اتصل بنا"
   }
-}
+  }
+
