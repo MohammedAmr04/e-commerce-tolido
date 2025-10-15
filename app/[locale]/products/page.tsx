@@ -1,5 +1,5 @@
-import ProductCard from "@/components/productsPage/ProductCard";
-import ProductSlider from "@/components/productsPage/ProductSlider";
+
+import ProductsPage from "@/components/productsPage/ProductsPage";
 import { IProduct } from "@/components/services/types/product";
 export const products: IProduct[] = [
     {
@@ -177,7 +177,36 @@ export const products: IProduct[] = [
       isFeatured: true,
     },
     {
-      _id: "1",
+      _id: "23",
+      title: {
+        en: "Premium Tuna in Sunflower Oil",
+        ar: "تونة ممتازة بزيت دوار الشمس",
+      },
+      description: {
+        en: "High-quality canned tuna packed in healthy sunflower oil for a fresh and rich taste.",
+        ar: "تونة معلبة عالية الجودة محفوظة في زيت دوار الشمس لتمنحك طعمًا غنيًا وطازجًا.",
+      },
+      slug: "premium-tuna-sunflower-oil",
+      images: [
+        { url: "/products/tuna-1.jpeg", },
+        // { url: "/images/products/tuna-2.jpg", },
+      ],
+      minimumOrderQuantity: 6,
+      createdAt: "2025-10-01T10:00:00Z",
+      updatedAt: "2025-10-10T14:20:00Z",
+      image3D: "/3d/tuna.glb",
+      country: { code: "EG" },
+      currency: "EGP",
+      basePrice: 85,
+      discount: 10,
+      finalPrice: 76.5,
+      sold: 230,
+      amount: 150,
+      stock: "stock",
+      isFeatured: true,
+    },
+    {
+      _id: "29",
       title: {
         en: "Premium Tuna in Sunflower Oil",
         ar: "تونة ممتازة بزيت دوار الشمس",
@@ -328,10 +357,7 @@ export default function page() {
 
     return (
       <main>
-        <div className="container h-screen flex justify-center items-center">
-            <ProductCard product={products[0]}/>
-        </div>
-        <ProductSlider products={products}/>
+   <ProductsPage products={products} />
       </main>
     );
   }

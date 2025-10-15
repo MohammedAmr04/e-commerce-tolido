@@ -68,12 +68,34 @@ export default function ProductSlider({ products, title }: Props) {
 
   return (
     <section className="w-full my-10">
-      {title && (
-        <h2 className="text-2xl font-semibold mb-6 text-[var(--color-text)]">
-          {title}
-        </h2>
+      {/* Title + Controls */}
+      { (
+        <div className="flex justify-between items-center mb-6 px-10">
+          {title && (
+            <h2 className="text-3xl px-3 py-3 border-s-4 border-primary font-bold text-[var(--color-text)]">
+              {title}
+            </h2>
+          )}
+          <div className="flex justify-end items-center gap-3">
+            <Button
+              type="default"
+              shape="circle"
+              icon={<LeftOutlined />}
+              className="text-[var(--color-primary)] border-[var(--color-border)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 transition"
+              onClick={() => instanceRef.current?.prev()}
+            />
+            <Button
+              type="default"
+              shape="circle"
+              icon={<RightOutlined />}
+              className="text-[var(--color-primary)] border-[var(--color-border)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 transition"
+              onClick={() => instanceRef.current?.next()}
+            />
+          </div>
+        </div>
       )}
 
+      {/* Slider */}
       <div
         ref={sliderRef}
         className="keen-slider px-10"
@@ -87,24 +109,6 @@ export default function ProductSlider({ products, title }: Props) {
             <ProductCard product={product} />
           </div>
         ))}
-      </div>
-
-      {/* Controls */}
-      <div className="flex justify-center gap-4 mt-6">
-        <Button
-          type="default"
-          shape="circle"
-          icon={<LeftOutlined />}
-          className="text-[var(--color-primary)] border-[var(--color-border)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 transition"
-          onClick={() => instanceRef.current?.prev()}
-        />
-        <Button
-          type="default"
-          shape="circle"
-          icon={<RightOutlined />}
-          className="text-[var(--color-primary)] border-[var(--color-border)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 transition"
-          onClick={() => instanceRef.current?.next()}
-        />
       </div>
     </section>
   );

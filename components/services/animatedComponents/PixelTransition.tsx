@@ -1,3 +1,4 @@
+"use client"
 import React, { useRef, useEffect, useState, CSSProperties } from 'react';
 import { gsap } from 'gsap';
 
@@ -28,9 +29,18 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
   const delayedCallRef = useRef<gsap.core.Tween | null>(null);
 
   const [isActive, setIsActive] = useState<boolean>(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
-  const isTouchDevice =
-    'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
+  useEffect(() => {
+    // ✅ تأكد إنك على المتصفح قبل استخدام window
+    if (typeof window !== 'undefined') {
+      setIsTouchDevice(
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        window.matchMedia('(pointer: coarse)').matches
+      );
+    }
+  }, []);
 
   useEffect(() => {
     const pixelGridEl = pixelGridRef.current;
@@ -41,8 +51,7 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
     for (let row = 0; row < gridSize; row++) {
       for (let col = 0; col < gridSize; col++) {
         const pixel = document.createElement('div');
-        pixel.classList.add('pixelated-image-card__pixel');
-        pixel.classList.add('absolute', 'hidden');
+        pixel.classList.add('pixelated-image-card__pixel', 'absolute', 'hidden');
         pixel.style.backgroundColor = pixelColor;
 
         const size = 100 / gridSize;
@@ -114,15 +123,7 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`
-        ${className}
-        bg-[#222]
-        text-white
-        w-[300px]
-        max-w-full
-        relative
-        overflow-hidden
-      `}
+      className={`${className} bg-[#222] text-white w-[300px] max-w-full relative overflow-hidden`}
       style={style}
       onMouseEnter={!isTouchDevice ? handleMouseEnter : undefined}
       onMouseLeave={!isTouchDevice ? handleMouseLeave : undefined}

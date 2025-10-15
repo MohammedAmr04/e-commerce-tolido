@@ -41,11 +41,11 @@ export default function MobileDrawer({ open, setOpen, navItems, pathname }:Props
       closeIcon={null}
       onClose={() => setOpen(false)}
       open={open}
-      bodyStyle={{
+      styles={{body:{
         backgroundColor: "var(--color-background)",
         color: "var(--color-text)",
         padding: "1rem 0",
-      }}
+      }}}
     >
       <nav className="flex flex-col gap-4 ps-4">
         {navItems.map((item) => (
