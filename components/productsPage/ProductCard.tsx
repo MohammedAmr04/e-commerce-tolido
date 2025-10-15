@@ -5,6 +5,7 @@ import { IProduct } from "../services/types/product";
 import { useParams } from "next/navigation";
 import { ShoppingCartOutlined, HeartOutlined } from "@ant-design/icons";
 import { Button } from "antd";
+import PixelTransition from "../services/animatedComponents/PixelTransition";
 interface IProp{
     product : IProduct
 }
@@ -21,12 +22,30 @@ export default function ProductCard({ product }: IProp) {
     <div className="group relative max-w-[260px] bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
       {/* ===== Product Image ===== */}
       <div className="relative w-full h-64 overflow-hidden">
-        <Image
+        <PixelTransition firstContent={ <Image
           src={imageUrl}
           alt={localizedTitle}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
-        />
+        />}
+        secondContent={
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "grid",
+              placeItems: "center",
+              backgroundColor: "#111"
+            }}
+          >
+            <p style={{ fontWeight: 900, fontSize: "3rem", color: "#ffffff" }}>Meow!</p>
+
+          </div>
+        }
+        pixelColor='#d61d16'
+
+         />
+       
 
         {/* ===== Sale Badge ===== */}
         {hasDiscount && (
