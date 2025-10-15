@@ -11,6 +11,7 @@ interface PixelTransitionProps {
   className?: string;
   style?: CSSProperties;
   aspectRatio?: string;
+  isHovered?: boolean; // ✅ new prop
 }
 
 const PixelTransition: React.FC<PixelTransitionProps> = ({
@@ -21,7 +22,8 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
   animationStepDuration = 0.3,
   className = '',
   style = {},
-  aspectRatio = '100%'
+  aspectRatio = '100%',
+  isHovered, // ✅ new prop
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pixelGridRef = useRef<HTMLDivElement | null>(null);
@@ -29,38 +31,28 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
   const delayedCallRef = useRef<gsap.core.Tween | null>(null);
 
   const [isActive, setIsActive] = useState<boolean>(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    // ✅ تأكد إنك على المتصفح قبل استخدام window
     if (typeof window !== 'undefined') {
-      setIsTouchDevice(
-        'ontouchstart' in window ||
-        navigator.maxTouchPoints > 0 ||
-        window.matchMedia('(pointer: coarse)').matches
-      );
-    }
-  }, []);
+      const pixelGridEl = pixelGridRef.current;
+      if (!pixelGridEl) return;
 
-  useEffect(() => {
-    const pixelGridEl = pixelGridRef.current;
-    if (!pixelGridEl) return;
+      pixelGridEl.innerHTML = '';
 
-    pixelGridEl.innerHTML = '';
+      for (let row = 0; row < gridSize; row++) {
+        for (let col = 0; col < gridSize; col++) {
+          const pixel = document.createElement('div');
+          pixel.classList.add('pixelated-image-card__pixel', 'absolute', 'hidden');
+          pixel.style.backgroundColor = pixelColor;
 
-    for (let row = 0; row < gridSize; row++) {
-      for (let col = 0; col < gridSize; col++) {
-        const pixel = document.createElement('div');
-        pixel.classList.add('pixelated-image-card__pixel', 'absolute', 'hidden');
-        pixel.style.backgroundColor = pixelColor;
+          const size = 100 / gridSize;
+          pixel.style.width = `${size}%`;
+          pixel.style.height = `${size}%`;
+          pixel.style.left = `${col * size}%`;
+          pixel.style.top = `${row * size}%`;
 
-        const size = 100 / gridSize;
-        pixel.style.width = `${size}%`;
-        pixel.style.height = `${size}%`;
-        pixel.style.left = `${col * size}%`;
-        pixel.style.top = `${row * size}%`;
-
-        pixelGridEl.appendChild(pixel);
+          pixelGridEl.appendChild(pixel);
+        }
       }
     }
   }, [gridSize, pixelColor]);
@@ -110,33 +102,23 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
     });
   };
 
-  const handleMouseEnter = (): void => {
-    if (!isActive) animatePixels(true);
-  };
-  const handleMouseLeave = (): void => {
-    if (isActive) animatePixels(false);
-  };
-  const handleClick = (): void => {
-    animatePixels(!isActive);
-  };
+  // ✅ watch hover state changes
+  useEffect(() => {
+    if (isHovered === undefined) return;
+    animatePixels(isHovered);
+  }, [isHovered]);
 
   return (
     <div
       ref={containerRef}
       className={`${className} bg-[#222] text-white w-[300px] max-w-full relative overflow-hidden`}
       style={style}
-      onMouseEnter={!isTouchDevice ? handleMouseEnter : undefined}
-      onMouseLeave={!isTouchDevice ? handleMouseLeave : undefined}
-      onClick={isTouchDevice ? handleClick : undefined}
     >
       <div style={{ paddingTop: aspectRatio }} />
-
       <div className="absolute inset-0 w-full h-full">{firstContent}</div>
-
       <div ref={activeRef} className="absolute inset-0 w-full h-full z-[2]" style={{ display: 'none' }}>
         {secondContent}
       </div>
-
       <div ref={pixelGridRef} className="absolute inset-0 w-full h-full pointer-events-none z-[3]" />
     </div>
   );
