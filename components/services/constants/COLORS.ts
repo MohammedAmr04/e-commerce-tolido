@@ -3,9 +3,10 @@ export const MAIN_COLORS = {
     primary: "#D61D16", // Red Brand
     secondary: "#F6C500", // Golden Yellow
     accent: "#ED6213", // Orange Accent
-    background: "#FFFFFF", // White
-    text: "#333333", // Dark Gray for readability
-    light: "#FFFFFF",
+background: "#FFFFFF", // Main background
+    backgroundSoft: "#FAFAFA", // Section contrast 1
+    backgroundAlt: "#F5F5F5", // Section contrast 2    // Dark Gray for readability
+    text: "#333333", light: "#FFFFFF",
     gray: "#808080",
     card: "#FFFFFF",
     border: "#E6E6E6",
@@ -17,11 +18,13 @@ export const MAIN_COLORS = {
     info: "#05B2DC",
   },
   dark: {
-    primary: "#F6C500", // Keep brand yellow as highlight on dark
-    secondary: "#ED6213", // Accent for buttons / hover
-    accent: "#D61D16", // Brand red for attention
-    background: "#121212", // Deep dark background
-    text: "#E0E0E0", // Light text
+    primary: "#D61D16", // Keep brand yellow as highlight on dark
+    secondary: "#f6c500", // Accent for buttons / hover
+    accent: "#ED6213", // Brand red for attention
+  background: "#121212", // Main background
+    backgroundSoft: "#1A1A1A", // Section contrast 1
+    backgroundAlt: "#1E1E1E",
+        text: "#E0E0E0", // Light text
     card: "#1E1E1E", // Slightly lighter dark for contrast
     border: "#2C2C2C",
     input: "#1E1E1E",

@@ -3,15 +3,17 @@
 import { Badge } from "antd";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function WishlistIcon() {
   const wishlistCount=2
   const [isActive, setIsActive] = useState(false);
+  const router = useRouter();
 
   return (
     <div
       className="relative flex items-center justify-center"
-      onClick={() => setIsActive(!isActive)}
+      onClick={() => {router.push('/profile/wishlist'),setIsActive(!isActive)}}
       title="Wishlist"
     >
       <Badge

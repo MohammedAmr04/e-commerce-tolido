@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 
 
@@ -9,8 +10,9 @@
   --color-primary: var(--c-primary);
   --color-secondary: var(--c-secondary);
   --color-accent: var(--c-accent);
-  --color-background: var(--c-background);
-  --color-text: var(--c-text);
+--color-background: var(--c-background);
+  --color-background-soft: var(--c-backgroundSoft);
+  --color-background-alt: var(--c-backgroundAlt);  --color-text: var(--c-text);
   --color-card: var(--c-card);
   --color-border: var(--c-border);
   --color-input: var(--c-input);
@@ -72,4 +74,7 @@ body{
   .container {
     @apply max-w-[1320px];
   }
+}
+label{
+    font-weight: 500;
 }

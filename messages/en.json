@@ -8,5 +8,45 @@
     "products": "Products",
     "about": "About",
     "contactus": "Contact Us"
+  },
+  "about":{
+    
+  "hero": {
+    "title": "About Tolido",
+    "subtitle": "Bringing quality to every table since the 1990s."
+  },
+  "story": {
+
+    "sectionTitle": "Our Story",
+    "paragraphs": [
+      "We are Tolido — a company proudly producing and distributing a diverse range of high-quality food and beverage products under our own brand name, Tolido.",
+      "Founded in the late 1990s by Mr. Anas Talas and Mr. Mouayad Talas, Tolido began as a small startup with a clear vision and a strong belief in potential and persistence. Over the years, our commitment to excellence and customer trust has driven us to expand globally, establishing multiple branches and a wide network of distributors around the world.",
+      "Our product portfolio includes a broad selection of items such as tuna, mushrooms, sweet corn, fava beans, corned beef, rice, liquid products, and sardines, among others. Every product that carries the Tolido name stands as a symbol of quality, reliability, and great value.",
+      "At Tolido, our vision is to be the first choice for customers around the world. We believe in customer satisfaction, competitive pricing, and a diverse product line that meets the needs of retailers, wholesalers, distributors, importers, and end consumers alike.",
+      "With a growing global presence and a passion for excellence, Tolido continues to bring quality to every table."
+    ]
+  }
+},
+  "contact": {
+    "map": {
+      "title": "Our Global Presence",
+      "subtitle": "Find Tolido branches and distributors around the world."
+    },
+    "form": {
+      "title": "Contact Us",
+      "subtitle": "We’d love to hear from you! Fill out the form below and our team will get back to you soon.",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address",
+      "success": "Your message has been sent successfully!",
+      "namePlaceholder": "Enter your full name",
+      "emailPlaceholder": "Enter your email address",
+      "subjectPlaceholder": "What is your message about?",
+      "messagePlaceholder": "Type your message here..."
+    }
   }
 }
