@@ -1,7 +1,7 @@
 "use client";
 
 import "keen-slider/keen-slider.min.css";
-import { useKeenSlider } from "keen-slider/react";
+import { useKeenSlider, KeenSliderInstance } from "keen-slider/react";
 import { IProduct } from "../services/types/product";
 import ProductCard from "./ProductCard";
 import { Button } from "antd";
@@ -52,7 +52,7 @@ export default function ProductSlider({ products, title }: Props) {
     []
   );
 
-  const startAutoplay = (slider: any) => {
+  const startAutoplay = (slider: KeenSliderInstance) => {
     stopAutoplay();
     timer.current = setInterval(() => {
       slider.next();

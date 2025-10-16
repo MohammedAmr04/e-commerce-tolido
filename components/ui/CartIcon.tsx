@@ -5,7 +5,7 @@ import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useState } from "react";
 
 export default function CartIcon() {
-  const [cartCount, setCartCount] = useState(3);
+  const [cartCount] = useState(3);
   const [isHovered, setIsHovered] = useState(false);
 
   return (

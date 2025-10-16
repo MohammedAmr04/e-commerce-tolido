@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useEffect, useState, CSSProperties } from 'react';
+import React, { useRef, useEffect, useState, CSSProperties, useCallback } from 'react';
 import { gsap } from 'gsap';
 
 interface PixelTransitionProps {
@@ -57,9 +57,9 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
     }
   }, [gridSize, pixelColor]);
 
-  const animatePixels = (activate: boolean): void => {
+  const animatePixels = useCallback((activate: boolean): void => {
     setIsActive(activate);
-
+    console.log(isActive)
     const pixelGridEl = pixelGridRef.current;
     const activeEl = activeRef.current;
     if (!pixelGridEl || !activeEl) return;
@@ -100,13 +100,13 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
         from: 'random'
       }
     });
-  };
+  }, [isActive, animationStepDuration]);
 
   // ✅ watch hover state changes
   useEffect(() => {
     if (isHovered === undefined) return;
     animatePixels(isHovered);
-  }, [isHovered]);
+  }, [isHovered,animatePixels]);
 
   return (
     <div

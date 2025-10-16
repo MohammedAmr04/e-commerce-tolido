@@ -11,7 +11,7 @@ interface IProp{
     product : IProduct
 }
 export default function ProductCard({ product }: IProp) {
-   const {title, images, basePrice, discount, finalPrice, isFeatured} = product
+   const {title, images, basePrice, discount, finalPrice} = product
   const { locale } = useParams();
   const [hovered, setHovered] = useState(false);
 

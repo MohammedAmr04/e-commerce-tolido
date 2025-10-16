@@ -35,7 +35,7 @@ export default function ProductsHeader({
 }: ProductsHeaderProps) {
   const [filters, setFilters] = useState<FilterValues>(defaultFilters);
 
-  const handleChange = (key: keyof FilterValues, value: any) => {
+  const handleChange = (key: keyof FilterValues, value: string |number | null) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
 

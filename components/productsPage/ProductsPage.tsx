@@ -20,6 +20,7 @@ export default function ProductsPage({ products }: Props) {
     console.log("Applied Filters:", filters);
     setFilters(filters);
   };
+  console.log(filters)
   return (
     <main className="w-full min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] overflow-hidden">
       <HeroSection />

@@ -5,8 +5,7 @@ import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { useState } from "react";
 
 export default function WishlistIcon() {
-  // مثال مبدئي (استبدله بالـ state الحقيقي لاحقًا)
-  const [wishlistCount, setWishlistCount] = useState(2);
+  const wishlistCount=2
   const [isActive, setIsActive] = useState(false);
 
   return (
