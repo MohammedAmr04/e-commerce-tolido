@@ -3,15 +3,19 @@
 import { Badge } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CartIcon() {
   const [cartCount] = useState(3);
   const [isHovered, setIsHovered] = useState(false);
 
+  const router = useRouter();
+
   return (
     <div
       className="relative flex items-center justify-center cursor-pointer"
       title="Cart"
+      onClick={()=>(router.push("/cart"))}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

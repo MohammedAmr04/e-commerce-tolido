@@ -13,7 +13,7 @@ export default function WishlistIcon() {
   return (
     <div
       className="relative flex items-center justify-center"
-      onClick={() => {router.push('/profile/wishlist'),setIsActive(!isActive)}}
+      onClick={() => {router.push('/profile/wishlist');setIsActive(!isActive)}}
       title="Wishlist"
     >
       <Badge

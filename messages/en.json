@@ -48,5 +48,29 @@
       "subjectPlaceholder": "What is your message about?",
       "messagePlaceholder": "Type your message here..."
     }
+  },
+  "cart": {
+    "title": "Your Cart",
+    "subtitle": "Review your items before checkout.",
+    "empty": "Your cart is empty",
+    "summary": "Order Summary",
+    "subtotal": "Subtotal",
+    "delivery": "Estimated Delivery",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "continue": "Continue Shopping",
+    "free": "FREE",
+    "minQuantity": "Minimum quantity: {value}",
+    "form": {
+      "title": "Shipping Address",
+      "fullName": "Full Name",
+      "phone": "Phone Number",
+      "city": "City",
+      "street": "Street",
+      "comment": "Comment",
+      "save": "Confirm Order"
+    }
   }
 }
+
+
