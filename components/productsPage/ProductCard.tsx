@@ -25,12 +25,13 @@ export default function ProductCard({ product }: IProp) {
     <div   
     onMouseEnter={() => setHovered(true)}
   onMouseLeave={() => setHovered(false)}
-   className="group relative max-w-[260px] bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+   className="group relative max-w-[260px]  border border-[var(--color-border)] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
       {/* ===== Product Image ===== */}
       <div className="relative w-full h-64 overflow-hidden">
         <PixelTransition 
         isHovered={hovered}
-        firstContent={ <Image
+        firstContent={ 
+        <Image
           src={imageUrl}
           alt={localizedTitle}
           fill
@@ -74,7 +75,7 @@ export default function ProductCard({ product }: IProp) {
       </div>
 
       {/* ===== Product Info ===== */}
-      <div className="p-4 flex flex-col gap-2">
+      <div className="p-4 flex flex-col bg-[var(--color-card)]  gap-2">
         <h3 className="text-base font-semibold text-[var(--color-text)] line-clamp-1 group-hover:text-[#ed6213] transition-colors">
           {localizedTitle}
         </h3>

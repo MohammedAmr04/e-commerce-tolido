@@ -16,8 +16,9 @@ export default function Page() {
 console.log(status)
 
   return (
-    <div className="p-6 bg-[var(--color-background)] min-h-screen text-[var(--color-text)]">
-      <h1 className="text-2xl font-bold mb-6 text-[var(--color-accent)]">My Orders</h1>
+    <div className="p-8 bg-[var(--color-background)] min-h-screen text-[var(--color-text)]">
+                <h1 className="text-3xl font-bold mb-2 text-[var(--color-primary)]">
+My Orders</h1>
 
       <OrdersTabs onSelect={(tab) => setStatus(tab)} />
 {/* 

@@ -14,7 +14,7 @@ export const products: IProduct[] = [
       },
       slug: "premium-tuna-sunflower-oil",
       images: [
-        { url: "/products/tuna-1.jpeg", },
+        { url: "/products/toolidooo  sliced mushroom blue.silver .png", },
         // { url: "/images/products/tuna-2.jpg", },
       ],
       minimumOrderQuantity: 6,
@@ -43,7 +43,7 @@ export const products: IProduct[] = [
       },
       slug: "premium-tuna-sunflower-oil",
       images: [
-        { url: "/products/tuna-1.jpeg", },
+        { url: "/products/toolidooo  sliced mushroom blue.silver .png", },
         // { url: "/images/products/tuna-2.jpg", },
       ],
       minimumOrderQuantity: 6,
@@ -72,7 +72,7 @@ export const products: IProduct[] = [
       },
       slug: "premium-tuna-sunflower-oil",
       images: [
-        { url: "/products/tuna-1.jpeg", },
+        { url: "/products/toolidooo  sliced mushroom blue.silver .png", },
         // { url: "/images/products/tuna-2.jpg", },
       ],
       minimumOrderQuantity: 6,
@@ -101,7 +101,7 @@ export const products: IProduct[] = [
       },
       slug: "premium-tuna-sunflower-oil",
       images: [
-        { url: "/products/tuna-1.jpeg", },
+        { url: "/products/toolidooo  sliced mushroom blue.silver .png", },
         // { url: "/images/products/tuna-2.jpg", },
       ],
       minimumOrderQuantity: 6,
@@ -130,7 +130,7 @@ export const products: IProduct[] = [
       },
       slug: "premium-tuna-sunflower-oil",
       images: [
-        { url: "/products/tuna-1.jpeg", },
+        { url: "/products/toolidooo  sliced mushroom blue.silver .png", },
         // { url: "/images/products/tuna-2.jpg", },
       ],
       minimumOrderQuantity: 6,
@@ -159,7 +159,7 @@ export const products: IProduct[] = [
       },
       slug: "premium-tuna-sunflower-oil",
       images: [
-        { url: "/products/tuna-1.jpeg", },
+        { url: "/products/toolidooo  sliced mushroom blue.silver .png", },
         // { url: "/images/products/tuna-2.jpg", },
       ],
       minimumOrderQuantity: 6,
@@ -188,7 +188,7 @@ export const products: IProduct[] = [
       },
       slug: "premium-tuna-sunflower-oil",
       images: [
-        { url: "/products/tuna-1.jpeg", },
+        { url: "/products/toolidooo  sliced mushroom blue.silver .png", },
         // { url: "/images/products/tuna-2.jpg", },
       ],
       minimumOrderQuantity: 6,
@@ -217,7 +217,7 @@ export const products: IProduct[] = [
       },
       slug: "premium-tuna-sunflower-oil",
       images: [
-        { url: "/products/tuna-1.jpeg", },
+        { url: "/products/toolidooo  sliced mushroom blue.silver .png", },
         // { url: "/images/products/tuna-2.jpg", },
       ],
       minimumOrderQuantity: 6,

@@ -111,7 +111,7 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`${className} bg-[#222] text-white w-[300px] max-w-full relative overflow-hidden`}
+      className={`${className}  text-white w-[300px] max-w-full relative overflow-hidden`}
       style={style}
     >
       <div style={{ paddingTop: aspectRatio }} />
