@@ -12,13 +12,13 @@ import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import Wishlist from "@/components/ui/WishlistIcon";
 import MobileDrawer from "@/components/ui/MobileDrawer";
 import InputSearch from "./InputSearch";
+import { useDarkLightContext } from "@/components/services/context/DarkLightProvider";
 
 export default function Header() {
   const t = useTranslations("common");
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  // ✅ إزالة رمز اللغة من المسار (مثل /en أو /ar)
+  const isDark = useDarkLightContext().isDark;
   const pathParts = pathname.split("/").filter(Boolean);
   const currentPath = pathParts.length > 1 ? `/${pathParts[1]}` : "/";
 
@@ -30,7 +30,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-[var(--color-background)] text-[var(--color-text)] shadow-md border-b border-[var(--color-border)] backdrop-blur-md transition-all duration-300">
+    <header className={`${!isDark?"bg-background":"bg-background-alt"} text-[var(--color-text)] shadow-md border-b border-[var(--color-border)] backdrop-blur-md transition-all duration-300`}>
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         
         {/* ===== Left Section ===== */}
