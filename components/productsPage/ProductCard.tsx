@@ -25,7 +25,7 @@ export default function ProductCard({ product }: IProp) {
     <div   
     onMouseEnter={() => setHovered(true)}
   onMouseLeave={() => setHovered(false)}
-   className="group relative max-w-[260px]  border border-[var(--color-border)] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+   className="group mx-auto relative max-w-[260px]  border border-[var(--color-border)] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
       {/* ===== Product Image ===== */}
       <div className="relative w-full h-64 overflow-hidden">
         <PixelTransition 
@@ -35,7 +35,7 @@ export default function ProductCard({ product }: IProp) {
           src={imageUrl}
           alt={localizedTitle}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          className="object-cover drop-shadow-[0_0_10px_rgba(222,29,22,0.5)] group-hover:scale-105 transition-transform duration-500"
         />}
         secondContent={
           <div

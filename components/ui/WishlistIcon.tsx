@@ -6,15 +6,18 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function WishlistIcon() {
-  const wishlistCount=2
+  const wishlistCount = 2;
   const [isActive, setIsActive] = useState(false);
   const router = useRouter();
 
   return (
     <div
-      className="relative flex items-center justify-center"
-      onClick={() => {router.push('/profile/wishlist');setIsActive(!isActive)}}
+      className="relative flex items-center justify-center cursor-pointer"
       title="Wishlist"
+      onClick={() => {
+        router.push("/profile/wishlist");
+        setIsActive(!isActive);
+      }}
     >
       <Badge
         count={wishlistCount}
@@ -26,16 +29,20 @@ export default function WishlistIcon() {
         }}
       >
         <div
-          className={`flex items-center justify-center w-9 h-9 rounded-full transition-all duration-300 cursor-pointer ${
+          className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ease-out ${
             isActive
-              ? "bg-[var(--color-primary)] text-white scale-105"
-              : "hover:bg-[var(--color-primary)] hover:text-white text-[var(--color-text)]"
+              ? "bg-[var(--color-primary)]/70 text-black scale-105"
+              : "text-[var(--color-text)] hover:bg-[var(--color-primary)]/70 hover:text-black"
           }`}
         >
           {isActive ? (
-            <HeartFilled className="text-lg transition-transform duration-200 scale-110" />
+            <HeartFilled
+              className="text-[20px] transition-transform duration-300 scale-110"
+            />
           ) : (
-            <HeartOutlined className="text-lg transition-transform duration-200" />
+            <HeartOutlined
+              className="text-[20px] transition-transform duration-300"
+            />
           )}
         </div>
       </Badge>

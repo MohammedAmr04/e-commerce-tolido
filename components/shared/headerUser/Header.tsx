@@ -4,19 +4,23 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { MenuOutlined} from "@ant-design/icons";
+import { MenuOutlined } from "@ant-design/icons";
 
 import Logo from "../shared/Logo";
 import Cart from "@/components/ui/CartIcon";
-import DarkModeToggle from "@/components/ui/DarkModeToggle";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import Wishlist from "@/components/ui/WishlistIcon";
 import MobileDrawer from "@/components/ui/MobileDrawer";
+import InputSearch from "./InputSearch";
 
 export default function Header() {
   const t = useTranslations("common");
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  // ✅ إزالة رمز اللغة من المسار (مثل /en أو /ar)
+  const pathParts = pathname.split("/").filter(Boolean);
+  const currentPath = pathParts.length > 1 ? `/${pathParts[1]}` : "/";
 
   const navItems = [
     { key: "home", label: t("home"), path: "/" },
@@ -28,26 +32,15 @@ export default function Header() {
   return (
     <header className="bg-[var(--color-background)] text-[var(--color-text)] shadow-md border-b border-[var(--color-border)] backdrop-blur-md transition-all duration-300">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+        
         {/* ===== Left Section ===== */}
-        <div className="flex items-center space-x-6">
-          <Logo />
+        <div className=" hidden md:block">
+          <InputSearch />
+        </div>
 
-          {/* ===== Desktop Nav ===== */}
-          <nav aria-label="Main navigation" className="hidden md:flex space-x-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.key}
-                href={item.path}
-                className={`transition-colors font-medium ${
-                  pathname === item.path
-                    ? "text-[var(--color-primary)] font-semibold"
-                    : "hover:text-[var(--color-primary)]"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+        {/* ===== Center (Logo) ===== */}
+        <div className="">
+          <Logo />
         </div>
 
         {/* ===== Right Section ===== */}
@@ -55,7 +48,6 @@ export default function Header() {
           <Cart />
           <Wishlist />
           <LanguageSwitcher />
-          <DarkModeToggle />
 
           {/* ===== Mobile Menu Button ===== */}
           <button
@@ -68,9 +60,41 @@ export default function Header() {
         </div>
       </div>
 
-      {/* ===== Mobile Drawer ===== */}
-      <MobileDrawer open={open} setOpen={setOpen} navItems={navItems} pathname={pathname} />
+      {/* ===== Desktop Navigation ===== */}
+      <div className="mx-auto w-fit pb-2">
+             <div className="block md:hidden">
+          <InputSearch />
+        </div>
 
+        <nav aria-label="Main navigation" className="hidden md:flex space-x-8">
+          {navItems.map((item) => {
+            const isActive = currentPath === item.path;
+            return (
+              <Link
+                key={item.key}
+                href={item.path}
+                className={`
+                  relative pb-2 font-medium transition-colors duration-300 
+                  ${isActive ? "text-[var(--color-primary)] font-semibold" : "hover:text-[var(--color-primary)]"}
+                  group
+                `}
+              >
+                {item.label}
+                {/* Underline Animation */}
+                <span
+                  className={`
+                    absolute bottom-0 left-0 h-[2px] bg-[var(--color-primary)] rounded-full transition-all duration-300 ease-in-out
+                    ${isActive ? "w-full" : "w-0 group-hover:w-full"}
+                  `}
+                />
+              </Link>
+            );
+          })}
+        </nav>
+      </div>
+
+      {/* ===== Mobile Drawer ===== */}
+      <MobileDrawer open={open} setOpen={setOpen} navItems={navItems} pathname={currentPath} />
     </header>
   );
 }

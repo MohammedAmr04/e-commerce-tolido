@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import UiProvider from "@/components/services/context/UiProvider";
 import Header from "@/components/shared/headerUser/Header";
+import DarkModeToggle from "@/components/ui/DarkModeToggle";
 
 // 🅰️ English fonts
 const geistSans = Geist({
@@ -54,6 +55,8 @@ export default async function RootLayout({
           <UiProvider isArabic={isArabic}>
           <Header />
               {children}
+                        <DarkModeToggle />
+
             </UiProvider>
           </AntdRegistry>
         </NextIntlClientProvider>
