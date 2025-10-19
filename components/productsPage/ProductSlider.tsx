@@ -70,9 +70,9 @@ export default function ProductSlider({ products, title }: Props) {
     <section className="w-full my-10">
       {/* Title + Controls */}
       { (
-        <div className="flex justify-between items-center mb-6 px-10">
+        <div className="flex justify-between items-center mb-10 px-10">
           {title && (
-            <h2 className="text-3xl px-3 py-3 border-s-4 border-primary font-bold text-[var(--color-text)]">
+            <h2 className="md:text-3xl  text-2xl px-3 py-3 border-s-4 border-primary font-bold text-[var(--color-text)]">
               {title}
             </h2>
           )}
@@ -98,7 +98,7 @@ export default function ProductSlider({ products, title }: Props) {
       {/* Slider */}
       <div
         ref={sliderRef}
-        className="keen-slider px-10"
+        className="keen-slider "
         onMouseEnter={stopAutoplay}
         onMouseLeave={() =>
           instanceRef.current && startAutoplay(instanceRef.current)

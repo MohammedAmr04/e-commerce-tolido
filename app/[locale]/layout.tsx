@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import UiProvider from "@/components/services/context/UiProvider";
 import Header from "@/components/shared/headerUser/Header";
 import DarkModeToggle from "@/components/ui/DarkModeToggle";
+import Footer from "@/components/shared/footerUser/Footer";
 
 // 🅰️ English fonts
 const geistSans = Geist({
@@ -55,6 +56,7 @@ export default async function RootLayout({
           <UiProvider isArabic={isArabic}>
           <Header />
               {children}
+              <Footer/>
                         <DarkModeToggle />
 
             </UiProvider>

@@ -2,6 +2,24 @@
   "HomePage": {
     "title": "Hello world!"
   },
+  
+  "Home": {
+    "heroTitle": "Discover the Fresh Taste of Tolido",
+    "heroSubtitle": "Premium quality canned and packaged foods that bring authentic flavor to your table.",
+    "shopNow": "Shop Now",
+     "whyChooseTitle": "Why Choose Tolido",
+    "whyChoose": {
+      "premiumTitle": "Premium Quality",
+      "premiumDesc": "We select only the finest ingredients to ensure top-tier quality in every product.",
+      "trustedTitle": "Trusted Taste",
+      "trustedDesc": "Our recipes are perfected over years to bring you authentic, delicious flavors.",
+      "longLifeTitle": "Long Shelf Life",
+      "longLifeDesc": "Our advanced packaging keeps products fresh and full of flavor for longer.",
+      "availableTitle": "Available Everywhere",
+      "availableDesc": "Find Tolido products across leading supermarkets and online platforms."
+    }
+  },
+
   "common":
   {
     "home": "Home",
@@ -70,7 +88,17 @@
       "comment": "Comment",
       "save": "Confirm Order"
     }
-  }
+  },
+  "footer": {
+  "about": "About Us",
+  "products": "Products",
+  "contact": "Contact Us",
+  "home": "Home",
+  "rights": "All rights reserved.",
+  "description": "Tolido brings quality and freshness to your table — anytime, anywhere.",
+  "followUs": "Follow Us"
+}
+
 }
 
 

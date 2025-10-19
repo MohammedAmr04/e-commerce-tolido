@@ -1,15 +1,16 @@
-import Image from "next/image";
+import HeroSection from "@/components/home/HeroSection";
+import ProductSlider from "@/components/productsPage/ProductSlider";
+import { products } from "./products/page";
+import WhyChooseUs from "@/components/home/WhyChooseUs";
 
 
 export default function Home() {
 
   return (
-    <div  className="size-40 mx-auto mt-40 relative ">
-      <Image
-              src="/products/toolidooo  sliced mushroom blue.silver .png"
-              alt={"localizedTitle"}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-            /></div>
+    <div  >
+      <HeroSection/>
+      <WhyChooseUs/>
+      <ProductSlider title={"Featured Product"} products={products} />
+  </div>
   );
 }
