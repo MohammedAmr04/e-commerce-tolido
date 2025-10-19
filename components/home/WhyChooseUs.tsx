@@ -9,7 +9,7 @@ import {
 import { useTranslations } from "next-intl";
 
 export default function WhyChooseUs() {
-  const title = useTranslations("Home")
+  const title = useTranslations("Home");
   const t = useTranslations("Home.whyChoose");
 
   const features = [
@@ -67,7 +67,7 @@ export default function WhyChooseUs() {
               <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-2">
                 {t(`${item.key}Title`)}
               </h3>
-              <p className="text-[var(--color-gray)] dark:text-[var(--color-text)] text-sm">
+              <p className="text-[var(--color-gray)] font-medium dark:text-[var(--color-text)] text-sm">
                 {t(`${item.key}Desc`)}
               </p>
             </div>
