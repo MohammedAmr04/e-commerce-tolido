@@ -12,7 +12,6 @@ export default function HeroSection() {
   return (
     <section className="py-20 transition-colors duration-300">
       <div className="container mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
-        
         {/* Left Side - Text */}
         <div className="space-y-6 text-center md:text-start text-primary">
           <h1 className="text-4xl md:text-5xl font-bold leading-tight">
@@ -25,7 +24,7 @@ export default function HeroSection() {
           <Button
             type="primary"
             size="large"
-            className="bg-[#f6c500] text-black font-semibold border-none hover:bg-yellow-400"
+            className="  font-semibold border-none  !bg-secondary hover:!bg-accent transition-colors duration-300"
             onClick={() => router.push("/products")}
           >
             {t("shopNow") || "Shop Now"}
@@ -37,6 +36,7 @@ export default function HeroSection() {
           <Image
             src="/test.gif"
             alt="Tolido Products"
+            unoptimized
             width={500}
             height={400}
             className="rounded-2xl  object-cover hover:scale-105 transition-transform duration-500"

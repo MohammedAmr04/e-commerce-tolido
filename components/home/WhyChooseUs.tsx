@@ -9,6 +9,7 @@ import {
 import { useTranslations } from "next-intl";
 
 export default function WhyChooseUs() {
+  const title = useTranslations("Home")
   const t = useTranslations("Home.whyChoose");
 
   const features = [
@@ -42,7 +43,7 @@ export default function WhyChooseUs() {
     <section className="py-20 bg-[var(--color-backgroundSoft)] transition-colors duration-300">
       <div className="container mx-auto px-6 md:px-10 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-primary)] mb-12">
-          {t("title", { defaultValue: "Why Choose Tolido" })}
+          {title("whyChooseTitle")}
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
