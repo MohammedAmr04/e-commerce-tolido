@@ -5,56 +5,49 @@ import { IProduct } from "../services/types/product";
 import { useParams } from "next/navigation";
 import { ShoppingCartOutlined, HeartOutlined } from "@ant-design/icons";
 import { Button } from "antd";
-import PixelTransition from "../services/animatedComponents/PixelTransition";
 import { useState } from "react";
-interface IProp{
-    product : IProduct
+
+interface IProp {
+  product: IProduct;
 }
+
 export default function ProductCard({ product }: IProp) {
-   const {title, images, basePrice, discount, finalPrice} = product
+  const { title, images, basePrice, discount, finalPrice } = product;
   const { locale } = useParams();
   const [hovered, setHovered] = useState(false);
 
   const isArabic = locale === "ar";
   const localizedTitle = title?.[isArabic ? "ar" : "en"] || "";
-
   const hasDiscount = discount && discount > 0;
-  const imageUrl = images?.[0]?.url ;
+  const imageUrl = images?.[0]?.url;
 
   return (
-    <div   
-    onMouseEnter={() => setHovered(true)}
-  onMouseLeave={() => setHovered(false)}
-   className="group mx-auto relative max-w-[260px]  border border-[var(--color-border)] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-      {/* ===== Product Image ===== */}
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="group mx-auto relative max-w-[260px] border border-[var(--color-border)] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+    >
+      {/* ===== Product Image / GIF ===== */}
       <div className="relative w-full h-64 overflow-hidden">
-        <PixelTransition 
-        isHovered={hovered}
-        firstContent={ 
+        {/* الصورة الأساسية */}
         <Image
           src={imageUrl}
           alt={localizedTitle}
           fill
-          className="object-cover drop-shadow-[0_0_10px_rgba(222,29,22,0.5)] group-hover:scale-105 transition-transform duration-500"
-        />}
-        secondContent={
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "grid",
-              placeItems: "center",
-              backgroundColor: "#111"
-            }}
-          >
-            <p style={{ fontWeight: 900, fontSize: "3rem", color: "#ffffff" }}>Meow!</p>
+          className={`object-cover transition-opacity duration-500 ${
+            hovered ? "opacity-0" : "opacity-100"
+          }`}
+        />
 
-          </div>
-        }
-        pixelColor='#d61d16'
-
-         />
-       
+        {/* الصورة المتحركة (GIF) */}
+        <Image
+          src="/test.gif"
+          alt="product animation"
+          fill
+          className={`object-cover transition-opacity duration-500 ${
+            hovered ? "opacity-100" : "opacity-0"
+          }`}
+        />
 
         {/* ===== Sale Badge ===== */}
         {hasDiscount && (
@@ -63,19 +56,18 @@ export default function ProductCard({ product }: IProp) {
           </div>
         )}
 
-        {/* ===== Featured Badge ===== */}
-        
-          <div className="flex absolute top-3 z-50 right-3 gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Button
-              shape="circle"
-              icon={<HeartOutlined color="#ed6213" />}
-              className="text-[#ed6213] hover:bg-[#ed6213]/10 border-none"
-            />
-          </div>
+        {/* ===== Favorite Button ===== */}
+        <div className="flex absolute top-3 z-50 right-3 gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <Button
+            shape="circle"
+            icon={<HeartOutlined color="#ed6213" />}
+            className="text-[#ed6213] hover:bg-[#ed6213]/10 border-none"
+          />
+        </div>
       </div>
 
       {/* ===== Product Info ===== */}
-      <div className="p-4 flex flex-col bg-[var(--color-card)]  gap-2">
+      <div className="p-4 flex flex-col bg-[var(--color-card)] gap-2">
         <h3 className="text-base font-semibold text-[var(--color-text)] line-clamp-1 group-hover:text-[#ed6213] transition-colors">
           {localizedTitle}
         </h3>
