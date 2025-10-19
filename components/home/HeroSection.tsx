@@ -35,11 +35,11 @@ export default function HeroSection() {
         {/* Right Side - Image */}
         <div className="flex justify-center md:justify-end">
           <Image
-            src="/heroH.png"
+            src="/test.gif"
             alt="Tolido Products"
             width={500}
             height={400}
-            className="rounded-2xl shadow-xl object-cover hover:scale-105 transition-transform duration-500"
+            className="rounded-2xl  object-cover hover:scale-105 transition-transform duration-500"
             priority
           />
         </div>
