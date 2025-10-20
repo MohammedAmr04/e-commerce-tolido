@@ -2,7 +2,11 @@
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-export default function SearchBar({size = "middle"}: {size?: "large" | "middle" | "small"}) {
+export default function SearchBar({
+  size = "middle",
+}: {
+  size?: "large" | "middle" | "small";
+}) {
   return (
     <div className="flex justify-center items-center w-full max-w-md mx-auto">
       <Input

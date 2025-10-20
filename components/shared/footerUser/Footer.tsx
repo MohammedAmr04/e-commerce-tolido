@@ -10,6 +10,7 @@ import {
   LinkedinFilled,
 } from "@ant-design/icons";
 import Link from "next/link";
+import Logo from "../shared/Logo";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -41,9 +42,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-14 text-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 place-items-center">
         {/* About Section */}
         <div className="footer-section max-w-xs">
-          <h2 className="text-2xl font-semibold mb-3 transition-transform duration-300 hover:scale-105 text-[var(--color-primary)]">
-            Tolido
-          </h2>
+          <Logo />
           <p className="text-sm leading-relaxed opacity-90 hover:opacity-100 transition-opacity duration-300">
             {t("description")}
           </p>
