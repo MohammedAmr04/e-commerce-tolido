@@ -22,11 +22,11 @@ export default function HeaderNavs({ open, setOpen }: HeaderNavsProps) {
 
   // 🛍️ Categories
   const categories: { key: string; label: string }[] = [
-    { key: "all", label: t("all") },
-    { key: "electronics", label: t("electronics") },
-    { key: "fashion", label: t("fashion") },
-    { key: "home", label: t("homeAndKitchen") },
-    { key: "sports", label: t("sports") },
+    { key: "all", label: "all" },
+    { key: "electronics", label: "electronics" },
+    { key: "fashion", label: "fashion" },
+    { key: "home", label: "homeAndKitchen" },
+    { key: "sports", label: "sports" },
   ];
 
   // 🧭 Main Nav Items

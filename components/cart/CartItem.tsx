@@ -24,7 +24,7 @@ export default function CartItem({
   onQuantityChange,
   onRemove,
 }: CartItemProps) {
-  const t = useTranslations("cart");
+  const t = useTranslations("cartItem");
   const [quantity, setQuantity] = useState(item.quantity);
 
   const MIN_QTY = 1;

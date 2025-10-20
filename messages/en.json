@@ -141,5 +141,23 @@
     "passwordResetSuccessDesc": "You can now login with your new password.",
     "passwordResetFailTitle": "Reset failed",
     "passwordResetFailDesc": "Something went wrong. Please try again."
+  },
+  "cartItem": {
+    "cartTitle": "Your Shopping Cart",
+    "emptyCart": "Your cart is empty.",
+    "removeItem": "Remove item",
+    "increase": "Increase quantity",
+    "decrease": "Decrease quantity",
+    "minQuantity": "Minimum quantity: {value}",
+    "subtotal": "Subtotal",
+    "checkout": "Proceed to Checkout",
+    "continueShopping": "Continue Shopping",
+    "total": "Total",
+    "updateCart": "Update Cart",
+    "quantity": "Quantity",
+    "price": "Price",
+    "category": "Category",
+    "addedToCart": "\"{product}\" has been added to your cart.",
+    "removedFromCart": "\"{product}\" has been removed from your cart."
   }
 }

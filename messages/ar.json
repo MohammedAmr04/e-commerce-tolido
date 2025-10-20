@@ -141,5 +141,23 @@
     "subtitle": "المنتجات التي حفظتها بانتظارك.",
     "clear": "مسح القائمة",
     "empty": "قائمة المفضلة فارغة"
+  },
+  "cartItem": {
+    "cartTitle": "سلة التسوق الخاصة بك",
+    "emptyCart": "سلة التسوق فارغة.",
+    "removeItem": "إزالة المنتج",
+    "increase": "زيادة الكمية",
+    "decrease": "تقليل الكمية",
+    "minQuantity": "الحد الأدنى للكمية: {value}",
+    "subtotal": "المجموع الفرعي",
+    "checkout": "إتمام الشراء",
+    "continueShopping": "متابعة التسوق",
+    "total": "الإجمالي",
+    "updateCart": "تحديث السلة",
+    "quantity": "الكمية",
+    "price": "السعر",
+    "category": "الفئة",
+    "addedToCart": "تمت إضافة \"{product}\" إلى سلة التسوق.",
+    "removedFromCart": "تمت إزالة \"{product}\" من سلة التسوق."
   }
 }

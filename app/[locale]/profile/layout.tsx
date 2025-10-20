@@ -15,7 +15,6 @@ const { Text } = Typography;
 const tabs = [
   { key: "settings", label: "Settings", icon: <SettingOutlined /> },
   { key: "orders", label: "Orders", icon: <ShoppingOutlined /> },
-  { key: "wishlist", label: "Wishlist", icon: <HeartOutlined /> },
 ];
 
 export default function ProfileLayout({
