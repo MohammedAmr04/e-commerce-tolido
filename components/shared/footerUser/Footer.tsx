@@ -36,12 +36,12 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="bg-background-alt  mt-20 overflow-hidden"
+      className="transition-colors duration-500 bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] mt-20 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 py-14 text-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 place-items-center">
         {/* About Section */}
         <div className="footer-section max-w-xs">
-          <h2 className="text-2xl font-semibold mb-3 transition-transform duration-300 hover:scale-105">
+          <h2 className="text-2xl font-semibold mb-3 transition-transform duration-300 hover:scale-105 text-[var(--color-primary)]">
             Tolido
           </h2>
           <p className="text-sm leading-relaxed opacity-90 hover:opacity-100 transition-opacity duration-300">
@@ -51,7 +51,6 @@ export default function Footer() {
 
         {/* Quick Links */}
         <div className="footer-section">
-          {/* <h3 className="text-lg font-semibold mb-3">{t("quickLinks")}</h3> */}
           <ul className="space-y-3 text-sm">
             {[
               { href: "/", label: t("home") },
@@ -62,7 +61,7 @@ export default function Footer() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="transition-all duration-300 hover:text-white font-medium hover:bg-primary rounded px-2 py-1 inline-block"
+                  className="transition-all duration-300 hover:text-[var(--color-primary)] font-medium rounded px-2 py-1 inline-block"
                 >
                   {link.label}
                 </Link>
@@ -73,18 +72,22 @@ export default function Footer() {
 
         {/* Contact Info */}
         <div className="footer-section">
-          <h3 className="text-lg font-semibold mb-3">{t("contact")}</h3>
-          <p className="text-sm opacity-90 hover:text-white hover:bg-primary rounded px-2 py-1 transition-all duration-300">
+          <h3 className="text-lg font-semibold mb-3 text-[var(--color-primary)]">
+            {t("contact")}
+          </h3>
+          <p className="text-sm opacity-90 hover:text-[var(--color-primary)] rounded px-2 py-1 transition-all duration-300">
             info@tolido.com
           </p>
-          <p className="text-sm opacity-90 mt-2 hover:text-white hover:bg-primary rounded px-2 py-1 transition-all duration-300">
+          <p className="text-sm opacity-90 mt-2 hover:text-[var(--color-primary)] rounded px-2 py-1 transition-all duration-300">
             +20 100 123 4567
           </p>
         </div>
 
         {/* Social Links */}
         <div className="footer-section">
-          <h3 className="text-lg font-semibold mb-3">{t("followUs")}</h3>
+          <h3 className="text-lg font-semibold mb-3 text-[var(--color-primary)]">
+            {t("followUs")}
+          </h3>
           <div className="flex items-center justify-center space-x-5 text-2xl">
             {[
               { icon: <FacebookFilled />, label: "Facebook" },
@@ -96,7 +99,7 @@ export default function Footer() {
                 key={i}
                 href="#"
                 aria-label={label}
-                className="transition-transform duration-300 hover:scale-110 hover:text-white hover:bg-primary p-2 rounded"
+                className="transition-all duration-300 hover:text-[var(--color-primary)] hover:scale-110 p-2 rounded"
               >
                 {icon}
               </a>
@@ -106,8 +109,12 @@ export default function Footer() {
       </div>
 
       {/* Bottom Line */}
-      <div className="border-t border-white/20 text-center py-5 text-sm opacity-80 hover:opacity-100 transition-opacity duration-300">
-        © {new Date().getFullYear()} <span className="font-semibold">Tolido</span>. {t("rights")}
+      <div className="border-t border-[var(--color-border)] text-center py-5 text-sm opacity-80 hover:opacity-100 transition-opacity duration-300">
+        © {new Date().getFullYear()}{" "}
+        <span className="font-semibold text-[var(--color-primary)]">
+          Tolido
+        </span>
+        . {t("rights")}
       </div>
     </footer>
   );
