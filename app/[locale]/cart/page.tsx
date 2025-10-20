@@ -23,6 +23,14 @@ const initialProducts = [
     price: 2.49,
     quantity: 1,
   },
+  {
+    _id: "3",
+    title: "Italian Pasta Sauce",
+    category: "Sauces",
+    image: "/products/toolidooo  sliced mushroom blue.silver .png",
+    price: 3.99,
+    quantity: 1,
+  },
 ];
 
 export default function CartPage() {
@@ -65,8 +73,37 @@ export default function CartPage() {
         />
       ) : (
         <Row gutter={[32, 32]}>
+          {/* 🛍️ Products List */}
           <Col xs={24} lg={16}>
-            <div className="flex flex-col gap-5">
+            <div
+              className="flex flex-col gap-5 max-h-[70vh] overflow-y-auto pe-2 
+              custom-scrollbar
+                         "
+            >
+              {cartItems.map((item) => (
+                <CartItem
+                  key={item._id}
+                  item={item}
+                  onQuantityChange={handleQuantityChange}
+                  onRemove={handleRemove}
+                />
+              ))}
+              {cartItems.map((item) => (
+                <CartItem
+                  key={item._id}
+                  item={item}
+                  onQuantityChange={handleQuantityChange}
+                  onRemove={handleRemove}
+                />
+              ))}
+              {cartItems.map((item) => (
+                <CartItem
+                  key={item._id}
+                  item={item}
+                  onQuantityChange={handleQuantityChange}
+                  onRemove={handleRemove}
+                />
+              ))}
               {cartItems.map((item) => (
                 <CartItem
                   key={item._id}
@@ -81,8 +118,9 @@ export default function CartPage() {
           {/* 💰 Summary Card */}
           <Col xs={24} lg={8}>
             <Card
-              className="rounded-2xl shadow-md border border-[var(--color-border)] bg-[var(--color-card)] 
-              text-[var(--color-text)] transition-all duration-300"
+              className="rounded-2xl shadow-md border border-[var(--color-border)] 
+              bg-[var(--color-card)] text-[var(--color-text)] 
+              transition-all duration-300 lg:sticky lg:top-24"
             >
               <h3 className="font-semibold text-xl mb-4 text-[var(--color-text)]">
                 {t("summary")}
@@ -115,7 +153,9 @@ export default function CartPage() {
                   type="primary"
                   block
                   size="large"
-                  className="!bg-[var(--color-primary)] font-medium !text-[var(--color-background)] hover:!opacity-90"
+                  className="!bg-[var(--color-primary)] font-medium 
+                             !text-[var(--color-background)] hover:!opacity-90 
+                             transition-all duration-300 rounded-xl"
                   onClick={() => setDrawerOpen(true)}
                 >
                   {t("checkout")}
@@ -123,11 +163,11 @@ export default function CartPage() {
 
                 <Button
                   size="large"
-                  variant="outlined"
-                  className="relative overflow-hidden border-2 !border-[var(--color-primary)] 
-             text-[var(--color-primary)] font-medium 
-             hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] 
-             transition-all duration-300 rounded-xl"
+                  className="relative overflow-hidden border-2 
+                             !border-[var(--color-primary)] text-[var(--color-primary)] 
+                             font-medium hover:bg-[var(--color-primary)] 
+                             hover:text-[var(--color-background)] 
+                             transition-all duration-300 rounded-xl"
                 >
                   {t("continue")}
                 </Button>
