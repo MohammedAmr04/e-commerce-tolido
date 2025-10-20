@@ -15,7 +15,7 @@ export default function WishlistIcon() {
       className="relative flex items-center justify-center cursor-pointer"
       title="Wishlist"
       onClick={() => {
-        router.push("/profile/wishlist");
+        router.push("/wishlist");
         setIsActive(!isActive);
       }}
     >
@@ -36,13 +36,9 @@ export default function WishlistIcon() {
           }`}
         >
           {isActive ? (
-            <HeartFilled
-              className="text-[20px] transition-transform duration-300 scale-110"
-            />
+            <HeartFilled className="text-[20px] transition-transform duration-300 scale-110" />
           ) : (
-            <HeartOutlined
-              className="text-[20px] transition-transform duration-300"
-            />
+            <HeartOutlined className="text-[20px] transition-transform duration-300" />
           )}
         </div>
       </Badge>

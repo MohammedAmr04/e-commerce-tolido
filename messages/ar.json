@@ -135,5 +135,11 @@
     "passwordResetSuccessDesc": "يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة.",
     "passwordResetFailTitle": "فشل التغيير",
     "passwordResetFailDesc": "حدث خطأ ما. حاول مرة أخرى."
+  },
+  "wishlist": {
+    "title": "قائمة المفضلة الخاصة بي",
+    "subtitle": "المنتجات التي حفظتها بانتظارك.",
+    "clear": "مسح القائمة",
+    "empty": "قائمة المفضلة فارغة"
   }
 }

@@ -64,6 +64,12 @@
       "messagePlaceholder": "Type your message here..."
     }
   },
+  "wishlist": {
+    "title": "My Wishlist",
+    "subtitle": "Your saved items are waiting for you.",
+    "clear": "Clear Wishlist",
+    "empty": "Your wishlist is empty"
+  },
   "cart": {
     "title": "Your Cart",
     "subtitle": "Review your items before checkout.",

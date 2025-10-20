@@ -13,9 +13,9 @@ const { Sider, Content } = Layout;
 const { Text } = Typography;
 
 const tabs = [
-  { key: "settings", label: "Settings", icon: <SettingOutlined/> },
-  { key: "orders", label: "Orders", icon: <ShoppingOutlined  /> },
-  { key: "wishlist", label: "Wishlist", icon: <HeartOutlined  /> },
+  { key: "settings", label: "Settings", icon: <SettingOutlined /> },
+  { key: "orders", label: "Orders", icon: <ShoppingOutlined /> },
+  { key: "wishlist", label: "Wishlist", icon: <HeartOutlined /> },
 ];
 
 export default function ProfileLayout({
@@ -55,17 +55,16 @@ export default function ProfileLayout({
           className="!bg-[var(--color-card)] border-r border-[var(--color-border)] flex flex-col items-center py-8"
         >
           {/* Avatar */}
-            <div className="flex justify-center items-center">
-              <Avatar
-            src="/1.jpg"
-            size={100}
-            style={{
-              border: `2px solid var(--color-border)`,
-              marginBottom: "1rem",
-            }}
-          />
-
-</div>
+          <div className="flex justify-center items-center">
+            <Avatar
+              src="/1.jpg"
+              size={100}
+              style={{
+                border: `2px solid var(--color-border)`,
+                marginBottom: "1rem",
+              }}
+            />
+          </div>
           {/* Email */}
           <Text className="block min-w-[200px] text-center !text-lg text-[var(--color-text)] mb-6">
             user@example.com
@@ -125,7 +124,9 @@ export default function ProfileLayout({
       )}
 
       {/* ===== Main content ===== */}
-      <Content className="flex-1 overflow-y-auto ">{children}</Content>
+      <Content className="flex-1 overflow-y-auto  custom-scrollbar ">
+        {children}
+      </Content>
     </Layout>
   );
 }
