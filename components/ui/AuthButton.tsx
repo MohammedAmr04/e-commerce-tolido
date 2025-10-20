@@ -86,7 +86,7 @@ export default function AuthButton() {
     <div ref={buttonRef}>
       {!user ? (
         <button
-          onClick={() => router.push("/auth/login")}
+          onClick={() => router.push("/login")}
           className="
             border-2 border-[var(--color-primary)]
             text-[var(--color-primary)]

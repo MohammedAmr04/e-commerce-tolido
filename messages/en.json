@@ -2,7 +2,7 @@
   "HomePage": {
     "title": "Hello world!"
   },
-  
+
   "Home": {
     "heroTitle": "Discover the Fresh Taste of Tolido",
     "heroSubtitle": "Premium quality canned and packaged foods that bring authentic flavor to your table.",
@@ -20,31 +20,28 @@
     }
   },
 
-  "common":
-  {
+  "common": {
     "home": "Home",
     "products": "Products",
     "about": "About",
     "contactus": "Contact Us"
   },
-  "about":{
-    
-  "hero": {
-    "title": "About Tolido",
-    "subtitle": "Bringing quality to every table since the 1990s."
+  "about": {
+    "hero": {
+      "title": "About Tolido",
+      "subtitle": "Bringing quality to every table since the 1990s."
+    },
+    "story": {
+      "sectionTitle": "Our Story",
+      "paragraphs": [
+        "We are Tolido — a company proudly producing and distributing a diverse range of high-quality food and beverage products under our own brand name, Tolido.",
+        "Founded in the late 1990s by Mr. Anas Talas and Mr. Mouayad Talas, Tolido began as a small startup with a clear vision and a strong belief in potential and persistence. Over the years, our commitment to excellence and customer trust has driven us to expand globally, establishing multiple branches and a wide network of distributors around the world.",
+        "Our product portfolio includes a broad selection of items such as tuna, mushrooms, sweet corn, fava beans, corned beef, rice, liquid products, and sardines, among others. Every product that carries the Tolido name stands as a symbol of quality, reliability, and great value.",
+        "At Tolido, our vision is to be the first choice for customers around the world. We believe in customer satisfaction, competitive pricing, and a diverse product line that meets the needs of retailers, wholesalers, distributors, importers, and end consumers alike.",
+        "With a growing global presence and a passion for excellence, Tolido continues to bring quality to every table."
+      ]
+    }
   },
-  "story": {
-
-    "sectionTitle": "Our Story",
-    "paragraphs": [
-      "We are Tolido — a company proudly producing and distributing a diverse range of high-quality food and beverage products under our own brand name, Tolido.",
-      "Founded in the late 1990s by Mr. Anas Talas and Mr. Mouayad Talas, Tolido began as a small startup with a clear vision and a strong belief in potential and persistence. Over the years, our commitment to excellence and customer trust has driven us to expand globally, establishing multiple branches and a wide network of distributors around the world.",
-      "Our product portfolio includes a broad selection of items such as tuna, mushrooms, sweet corn, fava beans, corned beef, rice, liquid products, and sardines, among others. Every product that carries the Tolido name stands as a symbol of quality, reliability, and great value.",
-      "At Tolido, our vision is to be the first choice for customers around the world. We believe in customer satisfaction, competitive pricing, and a diverse product line that meets the needs of retailers, wholesalers, distributors, importers, and end consumers alike.",
-      "With a growing global presence and a passion for excellence, Tolido continues to bring quality to every table."
-    ]
-  }
-},
   "contact": {
     "map": {
       "title": "Our Global Presence",
@@ -90,15 +87,53 @@
     }
   },
   "footer": {
-  "about": "About Us",
-  "products": "Products",
-  "contact": "Contact Us",
-  "home": "Home",
-  "rights": "All rights reserved.",
-  "description": "Tolido brings quality and freshness to your table — anytime, anywhere.",
-  "followUs": "Follow Us"
+    "about": "About Us",
+    "products": "Products",
+    "contact": "Contact Us",
+    "home": "Home",
+    "rights": "All rights reserved.",
+    "description": "Tolido brings quality and freshness to your table — anytime, anywhere.",
+    "followUs": "Follow Us"
+  },
+  "auth": {
+    "loginTitle": "Sign In",
+    "loginButton": "Login",
+    "emailPlaceholder": "Email address",
+    "passwordPlaceholder": "Password",
+    "emailRequired": "Please enter your email!",
+    "emailInvalid": "Please enter a valid email!",
+    "passwordRequired": "Please enter your password!",
+    "passwordMin": "Password must be at least 6 characters!",
+    "passwordPattern": "Password must contain at least one letter!",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot Password?",
+    "noAccount": "Don’t have an account?",
+    "registerLink": "Register",
+    "loginSuccess": "Welcome back!",
+    "loginFailed": "Login failed! Please check your credentials.",
+    "registerNow": "Register now",
+
+    "registerTitle": "Create Account",
+    "registerButton": "Register",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Login",
+    "registerSuccess": "Account created successfully!",
+    "registerFailed": "Registration failed! Please try again.",
+    "forgetTitle": "Forgot Password",
+    "resetPasswordTitle": "Reset Password",
+    "otpPlaceholder": "Enter OTP code",
+    "newPasswordPlaceholder": "New password",
+    "sendCode": "Send Code",
+    "resetPassword": "Reset Password",
+    "otpRequired": "Please enter the verification code!",
+    "passwordMinLength": "Password must be at least 6 characters!",
+    "otpSentTitle": "Verification code sent!",
+    "otpSentDesc": "A code has been sent to your email.",
+    "emailNotFoundTitle": "Email not found",
+    "emailNotFoundDesc": "Please make sure the email is registered.",
+    "passwordResetSuccessTitle": "Password reset successful!",
+    "passwordResetSuccessDesc": "You can now login with your new password.",
+    "passwordResetFailTitle": "Reset failed",
+    "passwordResetFailDesc": "Something went wrong. Please try again."
+  }
 }
-
-}
-
-

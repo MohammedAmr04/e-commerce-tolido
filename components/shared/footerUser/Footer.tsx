@@ -37,7 +37,7 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="transition-colors duration-500 bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] mt-20 overflow-hidden"
+      className="transition-colors duration-500 bg-[var(--color-bg)] text-[var(--color-text)] border-t border-[var(--color-border)] overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 py-14 text-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 place-items-center">
         {/* About Section */}
