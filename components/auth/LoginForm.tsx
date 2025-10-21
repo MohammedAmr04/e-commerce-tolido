@@ -5,6 +5,14 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import type { NotificationArgsProps } from "antd";
 import { useDarkLightContext } from "../services/context/DarkLightProvider";
+import {
+  ApiResponse,
+  LoginResponse,
+  useLoginMutation,
+  ErrorResponse,
+} from "../services/api/auth/useAuthMutations";
+import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 const { Title } = Typography;
 
@@ -17,8 +25,10 @@ type NotificationType = "success" | "error" | "info" | "warning";
 
 export default function LoginForm() {
   const t = useTranslations("auth");
-  const { isDark } = useDarkLightContext(); // "light" | "dark"
+  const { isDark } = useDarkLightContext();
+  const router = useRouter();
 
+  const { mutate, isPending } = useLoginMutation(); // ✅ استخدمناها صح
   const [api, contextHolder] = notification.useNotification();
 
   // 🔔 Notification helper
@@ -36,18 +46,24 @@ export default function LoginForm() {
   };
 
   const onFinish = (values: FieldType) => {
-    console.log("Success:", values);
-
-    // Simulated login logic
-    if (values.email === "test@tolido.com" && values.password === "123456") {
-      openNotification(
-        "success",
-        t("loginSuccessTitle"),
-        t("loginSuccessDesc")
-      );
-    } else {
-      openNotification("error", t("loginFailTitle"), t("loginFailDesc"));
-    }
+    mutate(values, {
+      onSuccess: (res: ApiResponse<LoginResponse>) => {
+        openNotification(
+          "success",
+          t("loginSuccessTitle"),
+          t("loginSuccessDesc")
+        );
+        console.log("Logged in:", res.data?.data?.user);
+        router.push("/"); // ✅ Redirect works in client
+      },
+      onError: (error: AxiosError<ErrorResponse>) => {
+        openNotification(
+          "error",
+          t("loginFailTitle"),
+          error.response?.data?.message || t("loginFailDesc")
+        );
+      },
+    });
   };
 
   const onFinishFailed = () => {
@@ -56,7 +72,7 @@ export default function LoginForm() {
 
   return (
     <div
-      className={`flex justify-center items-center py-15  px-4 ${
+      className={`flex justify-center items-center py-15 px-4 ${
         isDark ? "bg-background" : "bg-backgroundSoft"
       }`}
     >
@@ -69,7 +85,6 @@ export default function LoginForm() {
         <Form<FieldType>
           name="login"
           layout="vertical"
-          initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
@@ -106,10 +121,10 @@ export default function LoginForm() {
             />
           </Form.Item>
 
-          {/* Remember + Forget */}
+          {/* Forgot Password */}
           <div className="flex justify-between items-center mb-4 font-semibold text-gray-500">
             <Link
-              href="/forgot-password"
+              href="/forget-password"
               className="hover:text-primary hover:underline transition-colors"
             >
               {t("forgotPassword")}
@@ -122,6 +137,7 @@ export default function LoginForm() {
               type="primary"
               size="large"
               htmlType="submit"
+              loading={isPending} // ✅ تصحيح
               className="w-full !font-semibold !rounded-full bg-primary hover:bg-secondary text-light transition-all"
             >
               {t("loginButton")}

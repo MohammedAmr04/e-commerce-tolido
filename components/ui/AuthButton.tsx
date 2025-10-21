@@ -15,13 +15,20 @@ export default function AuthButton() {
 
   // ✅ Check token on mount
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const name = localStorage.getItem("username");
-    if (token && name) {
-      setUser({ name });
-    } else {
-      setUser(null);
-    }
+    const checkUser = () => {
+      const token = localStorage.getItem("token");
+      const name = localStorage.getItem("username");
+      if (token && name) {
+        setUser({ name });
+      } else {
+        setUser(null);
+      }
+    };
+
+    checkUser(); // run once initially
+
+    window.addEventListener("storage", checkUser);
+    return () => window.removeEventListener("storage", checkUser);
   }, []);
 
   // 🎬 GSAP fade-in animation
