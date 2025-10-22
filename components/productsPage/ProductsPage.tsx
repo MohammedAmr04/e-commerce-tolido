@@ -1,8 +1,11 @@
 "use client";
 
 import HeroSection from "./HeroSection";
-import { useSearchParams, useRouter } from "next/navigation"; // ✅ Next 15
-import { useProducts } from "../services/api/product/useProductMutations";
+import { useSearchParams, useRouter } from "next/navigation";
+import {
+  Product,
+  useProducts,
+} from "../services/api/product/useProductMutations";
 import FilterValues from "../services/types/filters";
 import { useState, useEffect, useCallback } from "react";
 import ProductsHeader from "./ProductsHeader";
@@ -13,49 +16,71 @@ export default function ProductsPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
+  // 🔹 Extract filters from URL
   const getFiltersFromParams = useCallback((): FilterValues => {
     const filters: FilterValues = {
-      ...(searchParams.get("category") && {
-        category: searchParams.get("category"),
-      }),
-      ...(searchParams.get("minPrice") && {
-        minPrice: Number(searchParams.get("minPrice")),
-      }),
-      ...(searchParams.get("maxPrice") && {
-        maxPrice: Number(searchParams.get("maxPrice")),
-      }),
+      category: searchParams.get("category") || "all",
+      minPrice: searchParams.get("minPrice")
+        ? Number(searchParams.get("minPrice"))
+        : null,
+      maxPrice: searchParams.get("maxPrice")
+        ? Number(searchParams.get("maxPrice"))
+        : null,
+      status: searchParams.get("status") || "all",
     };
     return filters;
   }, [searchParams]);
 
-  const [filters, setFilters] = useState<FilterValues | null>(
-    getFiltersFromParams()
-  );
+  const [filters, setFilters] = useState<FilterValues>(getFiltersFromParams());
+  const [page, setPage] = useState(1);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
 
+  // 🔹 Fetch products
+  const { data, isFetching } = useProducts({ ...filters, page });
+
+  // 🔹 Update filters when URL changes
   useEffect(() => {
     setFilters(getFiltersFromParams());
   }, [getFiltersFromParams]);
 
-  const { data, isFetching } = useProducts(filters);
+  // 🔹 When new data arrives, append products (for pagination)
+  useEffect(() => {
+    if (data?.products) {
+      if (page === 1) {
+        setAllProducts(data.products);
+      } else {
+        setAllProducts((prev) => [...prev, ...data.products]);
+      }
+    }
+  }, [data, page]);
 
+  // 🔹 Apply filters (and reset to page 1)
   const handleFilter = (newFilters: FilterValues | null) => {
-    setFilters(newFilters);
+    setFilters(newFilters || { category: "all", status: "all" });
+    setPage(1);
 
     const query: Record<string, string> = {};
-    if (newFilters?.category !== undefined)
-      query.category = String(newFilters.category);
-    if (newFilters?.minPrice !== undefined)
-      query.minPrice = String(newFilters.minPrice);
-    if (newFilters?.maxPrice !== undefined)
-      query.maxPrice = String(newFilters.maxPrice);
+    if (newFilters?.category && newFilters.category !== "all")
+      query.category = newFilters.category;
+    if (newFilters?.status && newFilters.status !== "all")
+      query.status = newFilters.status;
+    if (newFilters?.minPrice) query.minPrice = String(newFilters.minPrice);
+    if (newFilters?.maxPrice) query.maxPrice = String(newFilters.maxPrice);
 
-    router.push(
-      `/products?${new URLSearchParams(query).toString()}`,
-      { scroll: false } // حفظ scroll position
-    );
+    // ✅ Clean URL (no empty params)
+    const search = new URLSearchParams(query).toString();
+    router.push(`/products${search ? `?${search}` : ""}`, { scroll: false });
   };
 
-  if (isFetching)
+  // 🔹 Load more handler
+  const handleLoadMore = () => {
+    setPage((prev) => prev + 1);
+  };
+
+  // 🔹 Check if there are more pages
+  const hasMore = data && data.page * data.count < data.total;
+
+  if (isFetching && page === 1)
     return <p className="text-center py-20">Loading products...</p>;
 
   return (
@@ -64,8 +89,12 @@ export default function ProductsPage() {
 
       <section className="max-w-7xl mx-auto px-6 py-12">
         <ProductsHeader onFilter={handleFilter} defaultFilters={filters} />
-        <ProductsGrid products={data?.products || []} />
-        <LoadMoreButton />
+        <ProductsGrid products={allProducts} />
+
+        {/* ✅ Load More button only appears if there are more pages */}
+        {hasMore && (
+          <LoadMoreButton onLoadMore={handleLoadMore} loading={isFetching} />
+        )}
       </section>
     </main>
   );
