@@ -2,14 +2,14 @@
 
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider, KeenSliderInstance } from "keen-slider/react";
-import { IProduct } from "../services/types/product";
 import ProductCard from "./ProductCard";
 import { Button } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { useRef } from "react";
+import { Product } from "../services/api/product/useProductMutations";
 
 interface Props {
-  products: IProduct[];
+  products: Product[];
   title?: string;
 }
 
@@ -69,7 +69,7 @@ export default function ProductSlider({ products, title }: Props) {
   return (
     <section className="w-full my-10">
       {/* Title + Controls */}
-      { (
+      {
         <div className="flex justify-between items-center mb-10 px-10">
           {title && (
             <h2 className="md:text-3xl  text-2xl px-3 py-3 border-s-4 border-primary font-bold text-[var(--color-text)]">
@@ -93,7 +93,7 @@ export default function ProductSlider({ products, title }: Props) {
             />
           </div>
         </div>
-      )}
+      }
 
       {/* Slider */}
       <div

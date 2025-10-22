@@ -1,21 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { IProduct } from "../services/types/product";
 import { useParams } from "next/navigation";
 import { ShoppingCartOutlined, HeartOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { useState } from "react";
+import { Product } from "../services/api/product/useProductMutations";
 
 interface IProp {
-  product: IProduct;
+  product: Product;
 }
 
 export default function ProductCard({ product }: IProp) {
-  const { title, images, basePrice, discount, finalPrice } = product;
+  const { title, images, price, discount, finalPrice } = product;
   const { locale } = useParams();
   const [hovered, setHovered] = useState(false);
-
+  console.log(product.image3D);
   const isArabic = locale === "ar";
   const localizedTitle = title?.[isArabic ? "ar" : "en"] || "";
   const hasDiscount = discount && discount > 0;
@@ -41,9 +41,10 @@ export default function ProductCard({ product }: IProp) {
 
         {/* الصورة المتحركة (GIF) */}
         <Image
-          src="/test.gif"
+          src={product.image3D || ""}
           alt="product animation"
           fill
+          unoptimized
           className={`object-cover transition-opacity duration-500 ${
             hovered ? "opacity-100" : "opacity-0"
           }`}
@@ -68,7 +69,7 @@ export default function ProductCard({ product }: IProp) {
 
       {/* ===== Product Info ===== */}
       <div className="p-4 flex flex-col bg-[var(--color-card)] gap-2">
-        <h3 className="text-base font-semibold text-[var(--color-text)] line-clamp-1 group-hover:text-[#ed6213] transition-colors">
+        <h3 className="text-base font-semibold text-[var(--color-text)] line-clamp-1 group-hover:text-secondary transition-colors">
           {localizedTitle}
         </h3>
 
@@ -76,11 +77,11 @@ export default function ProductCard({ product }: IProp) {
           {/* ===== Price Section ===== */}
           <div>
             <p className="text-lg font-semibold text-[var(--color-primary)]">
-              ${finalPrice?.toFixed(2) ?? basePrice.toFixed(2)}
+              ${finalPrice?.toFixed(2) ?? price?.toFixed(2)}
             </p>
             {hasDiscount && (
               <p className="text-sm text-gray-400 line-through">
-                ${(basePrice || 0).toFixed(2)}
+                ${(price || 0).toFixed(2)}
               </p>
             )}
           </div>

@@ -2,13 +2,13 @@
 
 import { Row, Col, Empty, Button } from "antd";
 import ProductCard from "@/components/productsPage/ProductCard";
-import { products } from "../products/page";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
+import { Product } from "@/components/services/api/product/useProductMutations";
 
 export default function WishlistPage() {
-  const [wishlist, setWishlist] = useState(products);
+  const [wishlist, setWishlist] = useState<Product[]>([]);
   const t = useTranslations("wishlist");
 
   const clearWishlist = () => {
@@ -70,7 +70,7 @@ export default function WishlistPage() {
               transition={{ duration: 0.5 }}
             >
               <Row gutter={[24, 24]}>
-                {wishlist.map((product) => (
+                {wishlist?.map((product) => (
                   <Col key={product._id} xs={24} sm={12} md={8} lg={6}>
                     <motion.div
                       initial={{ opacity: 0, scale: 0.95 }}
