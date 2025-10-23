@@ -1,27 +1,16 @@
-import { Button } from "antd";
-
+import React from "react";
 type Props = {
   title: string;
-  showAdd?: boolean;
-  onAddClick?: () => void;
+  button?: React.ReactNode;
   children: React.ReactNode;
 };
 
-export default function TableLayout({
-  title,
-  showAdd,
-  onAddClick,
-  children,
-}: Props) {
+export default function TableLayout({ title, button, children }: Props) {
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <h2 className="text-xl font-semibold">{title}</h2>
-        {showAdd && (
-          <Button type="primary" onClick={onAddClick}>
-            Add New
-          </Button>
-        )}
+    <div className="container py-16 min-h-[calc(100vh-200px)]">
+      <div className="flex justify-between items-center pb-8">
+        <h2 className="text-3xl text-text font-semibold">{title}</h2>
+        {button && button}
       </div>
       {children}
     </div>

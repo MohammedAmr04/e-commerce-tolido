@@ -167,5 +167,37 @@
     "category": "الفئة",
     "addedToCart": "تمت إضافة \"{product}\" إلى سلة التسوق.",
     "removedFromCart": "تمت إزالة \"{product}\" من سلة التسوق."
+  },
+
+  "Admin": {
+    "Products": {
+      "newProduct": "منتج جديد",
+      "titleEn": "العنوان (إنجليزي)",
+      "titleAr": "العنوان (عربي)",
+      "descriptionEn": "الوصف (إنجليزي)",
+      "images": "الصور",
+      "upload": "رفع",
+      "uploadSuccess": "تم رفع الصورة بنجاح",
+      "uploadError": "فشل رفع الصورة",
+      "descriptionAr": "الوصف (عربي)",
+      "basePrice": "السعر الأساسي",
+      "discount": "الخصم",
+      "finalPrice": "السعر النهائي",
+      "country": "الدولة",
+      "stock": "حالة المخزون",
+      "minOrder": "الحد الأدنى للطلب",
+      "required": "هذا الحقل مطلوب",
+      "invalidQuantity": "أدخل كمية صحيحة",
+      "create": "إضافة منتج",
+      "update": "تحديث المنتج",
+      "cancel": "إلغاء",
+      "inStock": "متوفر",
+      "outOfStock": "غير متوفر",
+      "other": "أخرى",
+      "enterTitleEn": "أدخل العنوان بالإنجليزية",
+      "enterTitleAr": "أدخل العنوان بالعربية",
+      "enterDescriptionEn": "أدخل الوصف بالإنجليزية",
+      "enterDescriptionAr": "أدخل الوصف بالعربية"
+    }
   }
 }

@@ -2,9 +2,9 @@
 import { Drawer } from "antd";
 
 type Props = {
-  title: string;
-  open: boolean;
-  onClose: () => void;
+  title?: string;
+  open?: boolean;
+  onClose?: () => void;
   children: React.ReactNode;
   width?: number;
 };
