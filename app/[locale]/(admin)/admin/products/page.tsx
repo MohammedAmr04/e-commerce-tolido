@@ -21,6 +21,7 @@ import {
   useProductsAdmin,
 } from "@/components/services/api/product/useProductMutations";
 import CustomTable from "@/components/admin/shared/CustomTable";
+import { useDarkLightContext } from "@/components/services/context/DarkLightProvider";
 
 export default function AdminProductsPage() {
   const [queryParams, setQueryParams] = useState({
@@ -30,6 +31,7 @@ export default function AdminProductsPage() {
     category: null as string | null,
   });
 
+  const { isDark } = useDarkLightContext();
   // ✅ Fetch products with all prices
   const { data, isLoading, error } = useProductsAdmin(queryParams);
   const { handleDrawer, isDrawerOpen, selectedItem } =
@@ -84,92 +86,97 @@ export default function AdminProductsPage() {
   }
 
   return (
-    <TableLayout
-      title="Products Management"
-      button={
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          onClick={() => handleDrawer("OPEN")}
-          size="large"
-        >
-          Add Product
-        </Button>
-      }
-    >
-      {/* Filters */}
-      <div className="mb-4 flex flex-wrap gap-4">
-        <Input
-          placeholder="Search products..."
-          prefix={<SearchOutlined />}
-          value={queryParams.search}
-          onChange={(e) => handleSearch(e.target.value)}
-          style={{ width: 300 }}
-          allowClear
-        />
-
-        <Select
-          placeholder="Filter by category"
-          value={queryParams.category}
-          onChange={handleCategoryChange}
-          style={{ width: 200 }}
-          allowClear
-          suffixIcon={<FilterOutlined />}
-          options={[
-            { label: "All Categories", value: null },
-            { label: "Electronics", value: "Electronics" },
-            { label: "Clothing", value: "Clothing" },
-            { label: "Food", value: "Food" },
-            // Add more categories as needed
-          ]}
-        />
-
-        <div className="ml-auto text-gray-600">
-          Total: <span className="font-semibold">{data?.total || 0}</span>{" "}
-          products
-        </div>
-      </div>
-
-      {/* Table with Expandable Rows */}
-      <CustomTable<ProductAdmin>
-        dataSource={data?.products || []}
-        columns={productAdminColumns(handleDrawer, handleDelete)}
-        loading={isLoading || deleteMutation.isPending}
-        pagination={{
-          current: data?.page || 1,
-          total: data?.total || 0,
-          pageSize: queryParams.limit,
-          showSizeChanger: true,
-          showTotal: (total, range) =>
-            `${range[0]}-${range[1]} of ${total} items`,
-          onChange: (page, pageSize) =>
-            setQueryParams((prev) => ({
-              ...prev,
-              page,
-              limit: pageSize || 10,
-            })),
-        }}
-        // ✅ Expandable row to show pricing details
-        expandable={{
-          expandedRowRender: (record) => (
-            <ProductPricesExpanded prices={record.prices} />
-          ),
-          rowExpandable: (record) => record.prices && record.prices.length > 0,
-        }}
-      />
-
-      {/* Drawer for Create/Edit */}
-      <AdminDrawer
-        open={isDrawerOpen}
-        onClose={() => handleDrawer("CLOSE")}
-        title={selectedItem ? "Edit Product" : "Create Product"}
-        width={800}
+    <main className={`${isDark ? "bg-background" : "bg-background-alt"} `}>
+      <TableLayout
+        title="Products Management"
+        button={
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => handleDrawer("OPEN")}
+            size="large"
+          >
+            Add Product
+          </Button>
+        }
       >
-        <ProductForm
-          product={selectedItem}
-          onClose={() => handleDrawer("CLOSE")}
+        {/* Filters */}
+        <div className="mb-4 flex flex-wrap gap-4">
+          <Input
+            placeholder="Search products..."
+            size="large"
+            prefix={<SearchOutlined />}
+            value={queryParams.search}
+            onChange={(e) => handleSearch(e.target.value)}
+            style={{ width: 300 }}
+            allowClear
+          />
+
+          <Select
+            placeholder="Filter by category"
+            value={queryParams.category}
+            size="large"
+            onChange={handleCategoryChange}
+            style={{ width: 200 }}
+            allowClear
+            suffixIcon={<FilterOutlined />}
+            options={[
+              { label: "All Categories", value: null },
+              { label: "Electronics", value: "Electronics" },
+              { label: "Clothing", value: "Clothing" },
+              { label: "Food", value: "Food" },
+              // Add more categories as needed
+            ]}
+          />
+
+          <div className="ml-auto text-gray-600">
+            Total: <span className="font-semibold">{data?.total || 0}</span>{" "}
+            products
+          </div>
+        </div>
+
+        {/* Table with Expandable Rows */}
+        <CustomTable<ProductAdmin>
+          dataSource={data?.products || []}
+          columns={productAdminColumns(handleDrawer, handleDelete)}
+          loading={isLoading || deleteMutation.isPending}
+          pagination={{
+            current: data?.page || 1,
+            total: data?.total || 0,
+            pageSize: queryParams.limit,
+            showSizeChanger: true,
+            showTotal: (total, range) =>
+              `${range[0]}-${range[1]} of ${total} items`,
+            onChange: (page, pageSize) =>
+              setQueryParams((prev) => ({
+                ...prev,
+                page,
+                limit: pageSize || 10,
+              })),
+          }}
+          // ✅ Expandable row to show pricing details
+          expandable={{
+            expandedRowRender: (record) => (
+              <ProductPricesExpanded prices={record.prices} />
+            ),
+            rowExpandable: (record) =>
+              record.prices && record.prices.length > 0,
+          }}
         />
-      </AdminDrawer>
-    </TableLayout>
+
+        {/* Drawer for Create/Edit */}
+        <AdminDrawer
+          open={isDrawerOpen}
+          onClose={() => handleDrawer("CLOSE")}
+          title={selectedItem ? "Edit Product" : "Create Product"}
+          width={800}
+        >
+          <ProductForm
+            product={selectedItem}
+            onClose={() => handleDrawer("CLOSE")}
+          />
+        </AdminDrawer>
+      </TableLayout>
+    </main>
   );
 }

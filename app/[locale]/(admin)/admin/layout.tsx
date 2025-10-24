@@ -9,7 +9,7 @@ export default async function RootLayout({
   return (
     <>
       <HeaderAdmin />
-      <main>{children}</main>
+      {children}
       <Footer />
     </>
   );

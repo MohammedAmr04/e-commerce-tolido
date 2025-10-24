@@ -11,8 +11,6 @@ export const productAdminColumns = (
     title: "Image",
     dataIndex: "images",
     key: "images",
-    width: 80,
-    fixed: "left",
     render: (images: { url: string }[]) => {
       const url = images?.[0]?.url;
       return url ? (
@@ -36,9 +34,7 @@ export const productAdminColumns = (
     title: "Title",
     dataIndex: ["title", "en"],
     key: "title",
-    width: 200,
     ellipsis: true,
-    fixed: "left",
     render: (title: string) => (
       <Tooltip title={title}>
         <span className="font-medium">{title}</span>
@@ -49,19 +45,17 @@ export const productAdminColumns = (
     title: "Category",
     dataIndex: ["category", "en"],
     key: "category",
-    width: 120,
     render: (category: string) => category || "—",
   },
   {
     title: "Countries",
     dataIndex: "prices",
     key: "countries",
-    width: 150,
     render: (prices: ProductAdmin["prices"]) => {
       if (!prices || prices.length === 0) return "—";
 
       return (
-        <div className="flex flex-wrap gap-1">
+        <div className="flex gap-1">
           {prices.slice(0, 3).map((price, i) => (
             <Tag key={i} color="blue" className="m-0">
               {price.country.code}
@@ -76,37 +70,10 @@ export const productAdminColumns = (
       );
     },
   },
-  {
-    title: "Price Range",
-    key: "priceRange",
-    width: 150,
-    render: (_, record: ProductAdmin) => {
-      if (!record.prices || record.prices.length === 0) return "—";
 
-      const prices = record.prices.map((p) => p.finalPrice);
-      const min = Math.min(...prices);
-      const max = Math.max(...prices);
-      const currency = record.prices[0]?.currency || "USD";
-
-      if (min === max) {
-        return (
-          <span className="font-medium">
-            {min.toFixed(2)} {currency}
-          </span>
-        );
-      }
-
-      return (
-        <span className="text-sm">
-          {min.toFixed(2)} - {max.toFixed(2)} {currency}
-        </span>
-      );
-    },
-  },
   {
     title: "Stock Status",
     key: "stockStatus",
-    width: 120,
     render: (_, record: ProductAdmin) => {
       if (!record.prices || record.prices.length === 0) return "—";
 
@@ -131,7 +98,6 @@ export const productAdminColumns = (
   {
     title: "Total Sold",
     key: "totalSold",
-    width: 100,
     align: "center",
     render: (_, record: ProductAdmin) => {
       if (!record.prices || record.prices.length === 0) return "0";
@@ -146,7 +112,6 @@ export const productAdminColumns = (
   {
     title: "Total Amount",
     key: "totalAmount",
-    width: 120,
     align: "center",
     render: (_, record: ProductAdmin) => {
       if (!record.prices || record.prices.length === 0) return "0";
@@ -162,7 +127,6 @@ export const productAdminColumns = (
     title: "Min Order",
     dataIndex: "minimumOrderQuantity",
     key: "minimumOrderQuantity",
-    width: 100,
     align: "center",
     render: (qty: number) => qty || "—",
   },
@@ -170,7 +134,6 @@ export const productAdminColumns = (
     title: "Created",
     dataIndex: "createdAt",
     key: "createdAt",
-    width: 120,
     render: (date: string) => {
       if (!date) return "—";
       return new Date(date).toLocaleDateString("en-US", {
@@ -223,63 +186,98 @@ export const productAdminColumns = (
 // ==========================================
 // EXPANDABLE ROW CONTENT (Optional - لعرض تفاصيل الأسعار)
 // ==========================================
+
 export const ProductPricesExpanded = ({
   prices,
 }: {
   prices: ProductAdmin["prices"];
 }) => {
   if (!prices || prices.length === 0) {
-    return <div className="p-4 text-gray-500">No pricing information</div>;
+    return (
+      <div className="p-4 text-[var(--color-text)]/60 text-center">
+        No pricing information
+      </div>
+    );
   }
 
   return (
-    <div className="p-4 bg-gray-50">
-      <h4 className="font-semibold mb-3">Pricing Details by Country</h4>
+    <div className="p-4 bg-[var(--color-background-soft)] rounded-xl">
+      <h4 className="font-semibold mb-4 text-[var(--color-text)]">
+        Pricing Details by Country
+      </h4>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {prices.map((price, index) => (
           <div
             key={index}
-            className="border border-gray-200 rounded-lg p-3 bg-white"
+            className="p-4 rounded-2xl shadow-sm border border-[var(--color-border)] bg-[var(--color-card)] hover:shadow-md transition-all duration-200"
           >
-            <div className="flex items-center justify-between mb-2">
-              <span className="font-medium text-lg">{price.country.code}</span>
-              <Tag color={price.stock === "stock" ? "green" : "red"}>
+            <div className="flex items-center justify-between mb-3">
+              <span className="font-medium text-[var(--color-text)] text-lg">
+                {price.country.code}
+              </span>
+              <Tag
+                color={
+                  price.stock === "stock"
+                    ? "var(--color-success)"
+                    : "var(--color-danger)"
+                }
+                style={{
+                  color: "#fff",
+                  borderRadius: "6px",
+                  fontWeight: 500,
+                }}
+              >
                 {price.stock === "stock" ? "In Stock" : "Out of Stock"}
               </Tag>
             </div>
 
-            <div className="space-y-1 text-sm">
+            <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">Base Price:</span>
-                <span className="font-medium">
+                <span className="text-[var(--color-text)]/70">Base Price:</span>
+                <span className="font-medium text-[var(--color-text)]">
                   {price.basePrice} {price.currency}
                 </span>
               </div>
-
-              {price.discount && price.discount > 0 && (
+              {price.discount !== undefined && (
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Discount:</span>
-                  <span className="text-red-600 font-medium">
-                    -{price.discount}%
+                  <span className="text-[var(--color-text)]/70">Discount:</span>
+                  <span
+                    className={`font-medium ${
+                      price.discount > 0
+                        ? "text-[var(--color-danger)]"
+                        : "text-[var(--color-text)]/60"
+                    }`}
+                  >
+                    {price.discount}%
                   </span>
                 </div>
               )}
 
               <div className="flex justify-between">
-                <span className="text-gray-600">Final Price:</span>
-                <span className="font-bold text-green-600">
+                <span className="text-[var(--color-text)]/70">
+                  Final Price:
+                </span>
+                <span className="font-semibold text-[var(--color-success)]">
                   {price.finalPrice} {price.currency}
                 </span>
               </div>
 
-              <div className="flex justify-between pt-2 border-t">
-                <span className="text-gray-600">Sold:</span>
-                <span className="font-medium">{price.sold || 0}</span>
-              </div>
-
-              <div className="flex justify-between">
-                <span className="text-gray-600">Available:</span>
-                <span className="font-medium">{price.amount || 0}</span>
+              <div className="pt-2 border-t border-[var(--color-border)] space-y-1">
+                <div className="flex justify-between">
+                  <span className="text-[var(--color-text)]/70">Sold:</span>
+                  <span className="font-medium text-[var(--color-text)]">
+                    {price.sold || 0}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[var(--color-text)]/70">
+                    Available:
+                  </span>
+                  <span className="font-medium text-[var(--color-text)]">
+                    {price.amount || 0}
+                  </span>
+                </div>
               </div>
             </div>
           </div>

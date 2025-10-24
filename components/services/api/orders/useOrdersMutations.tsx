@@ -79,9 +79,10 @@ export function useOrdersAdmin(queryParams?: GetOrdersAdminQuery) {
       if (queryParams?.status) params.append("status", queryParams.status);
       if (queryParams?.country) params.append("country", queryParams.country);
       if (queryParams?.userId) params.append("userId", queryParams.userId);
+      if (queryParams?.orderId) params.append("orderId", queryParams.orderId);
 
       const { data } = await api.get(`/orders?${params.toString()}`);
-      return data;
+      return data.data;
     },
     placeholderData: keepPreviousData,
   });

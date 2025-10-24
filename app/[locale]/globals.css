@@ -110,3 +110,48 @@ label {
 .custom-scrollbar:hover::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.1);
 }
+
+.status-select .ant-select-selector {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-weight: 500;
+}
+
+/* 🟡 Pending */
+.status-pending .ant-select-selector {
+  border-color: var(--color-warning) !important;
+  background: color-mix(in srgb, var(--color-warning) 10%, transparent) !important;
+  color: color-mix(in srgb, var(--color-warning) 70%, black);
+}
+
+/* 🔵 Confirmed */
+.status-confirmed .ant-select-selector {
+  border-color: var(--color-info) !important;
+  background: color-mix(in srgb, var(--color-info) 10%, transparent) !important;
+  color: color-mix(in srgb, var(--color-info) 70%, black);
+}
+
+/* 🟣 Shipped */
+.status-shipped .ant-select-selector {
+  border-color: var(--color-primary) !important;
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent) !important;
+  color: color-mix(in srgb, var(--color-primary) 70%, black);
+}
+
+/* 🟢 Delivered */
+.status-delivered .ant-select-selector {
+  border-color: var(--color-success) !important;
+  background: color-mix(in srgb, var(--color-success) 10%, transparent) !important;
+  color: color-mix(in srgb, var(--color-success) 70%, black);
+}
+
+/* 🔴 Cancelled */
+.status-cancelled .ant-select-selector {
+  border-color: var(--color-danger) !important;
+  background: color-mix(in srgb, var(--color-danger) 10%, transparent) !important;
+  color: color-mix(in srgb, var(--color-danger) 70%, black);
+}
+
+.ant-pagination-options {
+  display: none !important;
+}

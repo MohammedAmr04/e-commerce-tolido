@@ -38,7 +38,7 @@ export type StockStatus = "stock" | "unStock";
 export interface ProductPrice {
   basePrice: number;
   finalPrice: number;
-  discount?: number | null;
+  discount?: number;
   currency: string;
   stock?: StockStatus;
   sold?: number;

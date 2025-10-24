@@ -27,13 +27,17 @@ export interface OrderItem {
   priceAtThatTime: number;
   total: number;
 }
-
+export type User = {
+  _id: string;
+  name: string;
+  email: string;
+};
 // ==========================================
 // USER ORDER TYPE
 // ==========================================
 export interface Order {
-  _id: string;
-  userId: string;
+  id: string;
+  userId: User | string;
   items: OrderItem[];
   totalAmount: number;
   deliveryType: DeliveryType;
@@ -82,6 +86,7 @@ export interface GetOrdersQuery {
 
 export interface GetOrdersAdminQuery extends GetOrdersQuery {
   country?: string | null;
+  orderId?: string | null;
   userId?: string | null;
 }
 
@@ -92,13 +97,20 @@ export interface GetOrdersResponse {
   totalPages: number;
   count: number;
 }
-
+export interface Statistics {
+  pending: number;
+  confirmed: number;
+  shipped: number;
+  delivered: number;
+  cancelled: number;
+}
 export interface GetOrdersAdminResponse {
   orders: OrderAdmin[];
   totalOrders?: number;
   currentPage: number;
   totalPages: number;
   count: number;
+  statistics: Statistics;
 }
 
 // ==========================================

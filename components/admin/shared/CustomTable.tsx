@@ -14,10 +14,11 @@ export default function CustomTable<T extends { id: React.Key }>({
   ...rest
 }: CustomTableProps<T>) {
   return (
-    <div className="bg-background-dark py-4 rounded-lg">
+    <div className="bg-background-dark overflow-x-auto py-4 rounded-lg">
       <Table<T>
         rowKey="id"
         columns={columns}
+        bordered={true}
         dataSource={dataSource}
         scroll={{ x: true }}
         pagination={{ position: ["bottomCenter"], pageSize: 8 }}

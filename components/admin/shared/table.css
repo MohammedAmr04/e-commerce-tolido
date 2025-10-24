@@ -1,8 +1,13 @@
 .table {
     width: 100%;
+    overflow-x: auto;
 }
 
 .table .ant-table {
     min-height: 350px;
 
+}
+
+.table .ant-table-content {
+    overflow: visible !important;
 }
