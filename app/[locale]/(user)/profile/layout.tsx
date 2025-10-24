@@ -1,11 +1,7 @@
 "use client";
 
 import { Avatar, Menu, Typography, Layout, Tabs } from "antd";
-import {
-  SettingOutlined,
-  HeartOutlined,
-  ShoppingOutlined,
-} from "@ant-design/icons";
+import { SettingOutlined, ShoppingOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 

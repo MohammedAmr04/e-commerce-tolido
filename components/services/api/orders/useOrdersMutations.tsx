@@ -39,7 +39,7 @@ export function useMyOrders(queryParams?: GetOrdersQuery) {
       if (queryParams?.status) params.append("status", queryParams.status);
 
       const { data } = await api.get(`/orders/my-orders?${params.toString()}`);
-      return data;
+      return data.data;
     },
     placeholderData: keepPreviousData,
   });

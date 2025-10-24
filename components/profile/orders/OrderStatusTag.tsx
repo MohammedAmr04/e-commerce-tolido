@@ -1,33 +1,30 @@
 "use client";
 
 import { Tag } from "antd";
-import { IOrderStatus } from "@/components/services/types/order";
+import { OrderStatus } from "@/components/services/api/orders/types";
 
 interface OrderStatusTagProps {
-  status: IOrderStatus;
+  status: OrderStatus;
 }
 
-const statusConfig: Record<
-  IOrderStatus,
-  { color: string; label: string }
-> = {
-  Pending: {
+const statusConfig: Record<OrderStatus, { color: string; label: string }> = {
+  pending: {
     color: "orange",
     label: "Pending",
   },
-  Confirmed: {
+  confirmed: {
     color: "blue",
     label: "Confirmed",
   },
-  Shipped: {
+  shipped: {
     color: "purple",
     label: "Shipped",
   },
-  Delivered: {
+  delivered: {
     color: "green",
     label: "Delivered",
   },
-  Cancelled: {
+  cancelled: {
     color: "red",
     label: "Cancelled",
   },
@@ -41,7 +38,7 @@ export default function OrderStatusTag({ status }: OrderStatusTagProps) {
       color={config.color}
       className="px-4 py-3 font-medium  rounded-full text-sm flex items-center gap-2"
     >
-    {config.label}
+      {config.label}
     </Tag>
   );
 }
