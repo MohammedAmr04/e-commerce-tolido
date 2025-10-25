@@ -65,6 +65,7 @@ export interface ProductAdmin {
 // ==========================================
 export interface Product {
   id: string;
+  _id: string;
   title: ProductTitle;
   slug: string;
   category?: ProductCategory;

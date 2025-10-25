@@ -55,7 +55,7 @@ export default function ProductSlider({ products, title }: Props) {
   const startAutoplay = (slider: KeenSliderInstance) => {
     stopAutoplay();
     timer.current = setInterval(() => {
-      slider.next();
+      slider?.next();
     }, 2500);
   };
 

@@ -2,25 +2,36 @@
 
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { ShoppingCartOutlined, HeartOutlined } from "@ant-design/icons";
+import {
+  ShoppingCartOutlined,
+  HeartOutlined,
+  HeartFilled,
+} from "@ant-design/icons";
 import { Button } from "antd";
 import { useState } from "react";
 import { Product } from "../services/api/product/useProductMutations";
+import { useWishlistContext } from "../services/context/WishlistProvider";
 
 interface IProp {
   product: Product;
 }
 
 export default function ProductCard({ product }: IProp) {
-  const { title, images, price, discount, finalPrice } = product;
+  const { id, title, images, price, discount, finalPrice } = product;
   const { locale } = useParams();
   const [hovered, setHovered] = useState(false);
-  console.log(product.image3D);
+  const { wishlistIds, handleAdd, handleRemove } = useWishlistContext();
   const isArabic = locale === "ar";
   const localizedTitle = title?.[isArabic ? "ar" : "en"] || "";
   const hasDiscount = discount && discount > 0;
   const imageUrl = images?.[0]?.url;
-
+  function handleAddRemove(id: string) {
+    if (wishlistIds.includes(id)) {
+      handleRemove(id);
+    } else {
+      handleAdd(id);
+    }
+  }
   return (
     <div
       onMouseEnter={() => setHovered(true)}
@@ -41,7 +52,7 @@ export default function ProductCard({ product }: IProp) {
 
         {/* الصورة المتحركة (GIF) */}
         <Image
-          src={product.image3D || ""}
+          src={product.image3D || "/placeholder.png"}
           alt="product animation"
           fill
           unoptimized
@@ -61,8 +72,22 @@ export default function ProductCard({ product }: IProp) {
         <div className="flex absolute top-3 z-50 right-3 gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <Button
             shape="circle"
-            icon={<HeartOutlined color="#ed6213" />}
-            className="text-[#ed6213] hover:bg-[#ed6213]/10 border-none"
+            icon={
+              wishlistIds.includes(product.id) ? (
+                <HeartFilled />
+              ) : (
+                <HeartOutlined />
+              )
+            }
+            className={`${
+              wishlistIds.includes(product.id)
+                ? "text-[#ed6213] bg-[#ed6213]/10"
+                : "text-[#ed6213] hover:bg-[#ed6213]/10"
+            } border-none`}
+            onClick={(e) => {
+              e.preventDefault();
+              handleAddRemove(id);
+            }}
           />
         </div>
       </div>

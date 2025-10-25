@@ -1,19 +1,40 @@
 "use client";
 
-import { Row, Col, Empty, Button } from "antd";
+import { Row, Col, Empty, Button, Spin } from "antd";
 import ProductCard from "@/components/productsPage/ProductCard";
-import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
-import { Product } from "@/components/services/api/product/useProductMutations";
+import { useWishlistContext } from "@/components/services/context/WishlistProvider";
+import { useWishlist, useGuestWishlist } from "@/components/services/api/wishlist/hooks";
 
 export default function WishlistPage() {
-  const [wishlist, setWishlist] = useState<Product[]>([]);
   const t = useTranslations("wishlist");
+  const { wishlistIds, isLoggedIn, loading: contextLoading } = useWishlistContext();
 
-  const clearWishlist = () => {
-    setWishlist([]);
-  };
+  // Get wishlist items based on auth status
+  const { data: remoteWishlist, isLoading: remoteLoading } = useWishlist({
+    enabled: isLoggedIn,
+  });
+
+  const { data: guestWishlist, isLoading: guestLoading } = useGuestWishlist({
+    enabled: !isLoggedIn,
+    productIds: !isLoggedIn ? wishlistIds : [],
+  });
+
+  // Determine which wishlist to show
+  const products = isLoggedIn 
+    ? remoteWishlist?.map(item => item.product)
+    : guestWishlist;
+  
+  const isLoading = contextLoading || (isLoggedIn ? remoteLoading : guestLoading);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[var(--color-background)] flex items-center justify-center">
+        <Spin size="large" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[var(--color-background)] transition-all duration-300">
@@ -28,23 +49,11 @@ export default function WishlistPage() {
               {t("subtitle")}
             </p>
           </div>
-
-          {wishlist.length > 0 && (
-            <Button
-              type="primary"
-              onClick={clearWishlist}
-              className="!bg-[var(--color-primary)] hover:!bg-[var(--color-accent)] 
-                        !border-none mt-6 md:mt-0 px-7 py-3 rounded-lg font-semibold 
-                        text-white transition-all duration-300"
-            >
-              {t("clear")}
-            </Button>
-          )}
         </div>
 
         {/* Content */}
         <AnimatePresence mode="wait">
-          {wishlist.length === 0 ? (
+          {!products || products.length === 0 ? (
             <motion.div
               key="empty"
               initial={{ opacity: 0, y: 20 }}
@@ -70,7 +79,7 @@ export default function WishlistPage() {
               transition={{ duration: 0.5 }}
             >
               <Row gutter={[24, 24]}>
-                {wishlist?.map((product) => (
+                {products.map((product) => (
                   <Col key={product._id} xs={24} sm={12} md={8} lg={6}>
                     <motion.div
                       initial={{ opacity: 0, scale: 0.95 }}

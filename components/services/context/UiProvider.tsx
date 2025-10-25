@@ -6,6 +6,7 @@ import { AntDProvider } from "./AntDProvider";
 import { ColorsProvider } from "./ColorsProvider";
 import useUserCountry from "../hooks/useUserCountry";
 import { ReactQueryProvider } from "./ReactQueryProvider";
+import { WishlistProvider } from "./WishlistProvider";
 
 interface UiContextType {
   country: string | null;
@@ -24,7 +25,11 @@ const UiProvider: React.FC<{
       <DarkLightProvider>
         <ColorsProvider>
           <AntDProvider isArabic={isArabic}>
-            <ReactQueryProvider>{children}</ReactQueryProvider>
+            <ReactQueryProvider>
+              <WishlistProvider>
+                {children}
+              </WishlistProvider>
+              </ReactQueryProvider>
           </AntDProvider>
         </ColorsProvider>
       </DarkLightProvider>

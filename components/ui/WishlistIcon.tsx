@@ -1,23 +1,19 @@
 "use client";
 
 import { Badge } from "antd";
-import { HeartFilled, HeartOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { HeartOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
+import { useWishlistContext } from "../services/context/WishlistProvider";
 
 export default function WishlistIcon() {
-  const wishlistCount = 2;
-  const [isActive, setIsActive] = useState(false);
+  const { wishlistCount } = useWishlistContext();
   const router = useRouter();
 
   return (
     <div
       className="relative flex items-center justify-center cursor-pointer"
       title="Wishlist"
-      onClick={() => {
-        router.push("/wishlist");
-        setIsActive(!isActive);
-      }}
+      onClick={() => router.push("/wishlist")}
     >
       <Badge
         count={wishlistCount}
@@ -29,17 +25,9 @@ export default function WishlistIcon() {
         }}
       >
         <div
-          className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ease-out ${
-            isActive
-              ? "bg-[var(--color-primary)]/70 text-black scale-105"
-              : "text-[var(--color-text)] hover:bg-[var(--color-primary)]/70 hover:text-black"
-          }`}
+          className="flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ease-out text-[var(--color-text)] hover:bg-[var(--color-primary)]/70 hover:text-black"
         >
-          {isActive ? (
-            <HeartFilled className="text-[20px] transition-transform duration-300 scale-110" />
-          ) : (
-            <HeartOutlined className="text-[20px] transition-transform duration-300" />
-          )}
+          <HeartOutlined className="text-[20px] transition-transform duration-300" />
         </div>
       </Badge>
     </div>
