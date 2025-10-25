@@ -79,6 +79,7 @@ export const WishlistProvider = ({
   });
 
   // ✅ sync wishlist after login/logout or data fetch
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (isSyncing) return;
 

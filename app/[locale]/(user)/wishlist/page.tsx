@@ -1,15 +1,22 @@
 "use client";
 
-import { Row, Col, Empty, Button, Spin } from "antd";
+import { Row, Col, Empty, Spin } from "antd";
 import ProductCard from "@/components/productsPage/ProductCard";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWishlistContext } from "@/components/services/context/WishlistProvider";
-import { useWishlist, useGuestWishlist } from "@/components/services/api/wishlist/hooks";
+import {
+  useWishlist,
+  useGuestWishlist,
+} from "@/components/services/api/wishlist/hooks";
 
 export default function WishlistPage() {
   const t = useTranslations("wishlist");
-  const { wishlistIds, isLoggedIn, loading: contextLoading } = useWishlistContext();
+  const {
+    wishlistIds,
+    isLoggedIn,
+    loading: contextLoading,
+  } = useWishlistContext();
 
   // Get wishlist items based on auth status
   const { data: remoteWishlist, isLoading: remoteLoading } = useWishlist({
@@ -22,11 +29,10 @@ export default function WishlistPage() {
   });
 
   // Determine which wishlist to show
-  const products = isLoggedIn 
-    ? remoteWishlist?.map(item => item.product)
-    : guestWishlist;
-  
-  const isLoading = contextLoading || (isLoggedIn ? remoteLoading : guestLoading);
+  const products = isLoggedIn ? remoteWishlist : guestWishlist;
+
+  const isLoading =
+    contextLoading || (isLoggedIn ? remoteLoading : guestLoading);
 
   if (isLoading) {
     return (

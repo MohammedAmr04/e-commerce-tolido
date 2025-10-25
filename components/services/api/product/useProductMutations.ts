@@ -139,6 +139,7 @@ export interface GetProductsResponse {
   products: Product[];
   total: number;
   page: number;
+  count: number;
   limit: number;
   totalPages: number;
 }
